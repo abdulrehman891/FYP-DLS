@@ -4,6 +4,18 @@
     box-sizing: border-box;
 }
 
+::selection{
+    color : var(--fourth-color);
+    background: #000000;
+}
+
+.text-third{
+    text-decoration: none;
+}
+.text-third:hover{
+    color :#daaf41;
+}
+
 /* Defining Colors Start */
 
 :root{
@@ -214,6 +226,19 @@ a:hover,a:focus{
 
 /* Testimonial End */
 
+
+/* Social icons Start */
+
+.social li{
+    display: inline-block;
+}
+.social li a {
+    padding : 5px;
+    color : var(--fourth-color);
+    background : var(--third-color);
+}
+
+/* Social icons End */
 
 
 

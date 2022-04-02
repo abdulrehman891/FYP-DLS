@@ -50,7 +50,39 @@ $(".owl-prev, .owl-next").hover(function () {
 );
 // Testimonial End
 
+// Fade Up Animation
+$('.fade-up').hover(function () {
+		// over
+		$(this).css({
+			position : 'relative'
+		});
+		$(this).animate({
+			bottom : '25px',
+		});
+	}, function () {
+		// out
+		$(this).animate({
+			bottom : '0',
+		});
+	}
+);
 
+// Fade Up sm
+$('.fade-up-sm').hover(function () {
+		// over
+		$(this).css({
+			position : 'relative'
+		});
+		$(this).animate({
+			bottom : '2px',
+		});
+	}, function () {
+		// out
+		$(this).animate({
+			bottom : '0',
+		});
+	}
+);
 
 
 });
