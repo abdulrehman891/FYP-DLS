@@ -66,6 +66,9 @@
     border-bottom: 1px solid var(--third-color);
 }
 
+
+
+/* Defining Buttons */
 .btn-gold{
     background: var(--third-color);
     color: aliceblue;
@@ -76,10 +79,35 @@
     font-weight: 700;
     letter-spacing: .05rem;
 }
+
+
 .btn-gold:hover{
     color: #ffffffe1;
     background-color: #daaf41;
 }
+
+.btn-outline-gold{
+    color: var(--third-color);
+    border-color:var(--third-color);
+}
+.btn-outline-gold:hover{
+    color:var(--fourth-color);
+    background-color:var(--third-color);
+    border-color: var(--third-color);
+}
+
+.btn-grey{
+    color:#fff;
+    background-color:var(--first-color);
+    border-color:var(--first-color);
+}
+.btn-grey:hover{
+    color:#fff;
+    background-color:var(--first-color);
+    border-color:var(--first-color);
+}
+
+/* Defining Button End */
 
 .banner-image, .call-us{
     position: relative;
@@ -243,20 +271,118 @@ a:hover,a:focus{
 
 
 /* Contact US Start */
-input, textarea{
+.custom-form{
     background-color: transparent !important;
     border: none !important;
     border-radius: 0 !important;
     border-bottom: 2px solid var(--fifth-color) !important;
 }
 
-.form-control:focus , textarea:focus{
+.custom-form:focus {
     color : white !important;
     box-shadow: none !important;
     border-bottom: 2px solid var(--third-color) !important;
 
 }
 /* Contact US End */
+
+
+/* Lawyer Page Start */
+.checked {
+    color: var(--third-color);
+}
+
+
+/* search button */
+.search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+  }
+  .input-search{
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: var(--first-color);
+    padding-right: 40px;
+    color:#fff;
+  }
+  .input-search::placeholder{
+    color:rgba(255,255,255,.5);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+  }
+  .btn-search{
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color: white;
+    background-color:transparent;
+    pointer-events: painted;  
+}
+.btn-search:focus ~ .input-search{
+    color: var(--first-color) !important;
+    width: 300px;
+    border-radius: 0px;
+    background-color: var(--first-color);
+    border-bottom:1px solid var(--third-color);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+  .input-search:focus{
+    width: 300px;
+    border-radius: 0px;
+    background-color: var(--second-color);
+    border-bottom:1px solid var(--third-color);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    border: none !important;
+    outline: none !important;
+  }
+
+
+
+  /* category Start*/
+
+.form-select:focus{
+    box-shadow: none !important;
+}
+
+.select-item{
+    background-color: var(--second-color) !important;
+    color: var(--fourth-color) !important;
+}
+
+.select-item:hover{
+    background-color: var(--first-color) !important;
+    color : orange !important;
+}
+
+  /* Category End */
+  
+
+/* Lawyer Page End */
+
+/* Lawyer Registration Start */
+#lawyer-registration-form input:focus{
+    outline : 2px solid var(--third-color) !important;
+    box-shadow: none !important;
+    border: 2px solid var(--third-color) !important;
+}
+/* Lawyer Registration End */
+
 
 
 
