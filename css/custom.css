@@ -242,6 +242,23 @@ a:hover,a:focus{
 
 
 
+/* Contact US Start */
+input, textarea{
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid var(--fifth-color) !important;
+}
+
+.form-control:focus , textarea:focus{
+    color : white !important;
+    box-shadow: none !important;
+    border-bottom: 2px solid var(--third-color) !important;
+
+}
+/* Contact US End */
+
+
 
 /* Responsive Design */
 @media screen and (max-width : 990px) {
