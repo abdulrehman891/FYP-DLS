@@ -85,7 +85,6 @@ $('.fade-up-sm').hover(function () {
 );
 
 
-
 });
 
 
