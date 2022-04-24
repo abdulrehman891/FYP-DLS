@@ -112,7 +112,8 @@
 .banner-image, .call-us{
     position: relative;
     background-image: url('../images/banner.jpg');
-    /* background-size: cover; */
+    background-size: auto;
+    background-position: center;
 }
 
 .img-overly{
