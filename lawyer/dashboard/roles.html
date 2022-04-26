@@ -23,6 +23,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/custom.css">
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="../../plugins/css/jquery.datatable.min.css">
+
+
+
+
 
     <style>
         .nav-item {
@@ -57,7 +63,7 @@
             <hr class="sidebar-divider mt-4">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -67,7 +73,7 @@
             <!-- Nav Item - Clients -->
             <li class="nav-item">
                 <a class="nav-link" href="clients.html">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Clients</span>
                 </a>
             </li>
@@ -75,20 +81,19 @@
             <!-- Nav Item - Cases -->
             <li class="nav-item">
                 <a class="nav-link" href="cases.html">
-                    <i class="fas fa-gavel"></i>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Cases</span></a>
             </li>
 
             <!-- Nav Item - Appointment -->
             <li class="nav-item">
-                <a class="nav-link" href="appointments.html">
-                    <i class="fas fa-calendar-plus"></i>
+                <a class="nav-link" href="appointment.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Appointment</span></a>
             </li>
 
             <!-- Nav Item - Team Members -->
-
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#members"
                     aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-users-cog"></i>
@@ -104,17 +109,18 @@
 
 
 
+
             <!-- Nav Item - Settings -->
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                    aria-expanded="false" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span>
                 </a>
                 <div id="collapseTwo" class="dropdown-menu" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">All Settings:</h6>
-                        <a class="collapse-item" href="casetype.html">Case Type</a>
+                        <a class="collapse-item" href="casetype.html"> Case Type</a>
                         <a class="collapse-item" href="courttype.html">Court Type</a>
                         <a class="collapse-item" href="court.html">Court</a>
                         <a class="collapse-item" href="judge.html">Judge</a>
@@ -338,192 +344,84 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
 
+
+
+
+                <!-- Page Content Start -->
+
+                <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-fifth">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-grey shadow-sm"><i
-                        class="fas fa-download fa-sm text-fourth"></i> 
-                            Generate Report
+                        <h1 class="h3 mb-0 text-fifth">Member Role</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-grey shadow-sm">
+                            <button class="btn btn-grey">
+                                <i class="fas fa-plus"></i>
+                                Add Role
+                            </button>
                         </a>
                     </div>
-
-                    <!-- Content Row -->
                     <div class="row">
+                        <div class="col-12">
+                            
 
-                        <!-- Clients -  Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col me-2">
-                                            <div class="font-weight-bold text-primary text-uppercase mb-1">
-                                                Clients</div>
-                                            <h1 class="mb-0 font-weight-bold text-gray-800">5</h1>
-                                            <small class="text-muted">Total Clients</small>
-                                        </div>
-                                        <div class="col-auto">
-                                            <!-- <i class="fas fa-calendar fa-2x text-gray-300"></i> -->
-                                            <i class="fas fa-users fa-3x fa-fw"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Cases -  Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-secondary shadow h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col me-2">
-                                            <div class="font-weight-bold text-secondary text-uppercase mb-1">
-                                                Cases</div>
-                                            <h1 class="mb-0 font-weight-bold text-gray-800">5</h1>
-                                            <small class="text-muted">Total Cases</small>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-gavel fa-3x fa-fw"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Important Cases -  Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col me-2">
-                                            <div class="font-weight-bold text-info text-uppercase mb-1">
-                                                Important</div>
-                                            <h1 class="mb-0 font-weight-bold text-gray-800">5</h1>
-                                            <small class="text-muted">Total important cases</small>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-star fa-3x fa-fw"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Archieved -  Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col me-2">
-                                            <div class="font-weight-bold text-success text-uppercase mb-1">
-                                                Archieved</div>
-                                            <h1 class="mb-0 font-weight-bold text-gray-800">5</h1>
-                                            <small class="text-muted">Total completed cases</small>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-file-archive fa-3x fa-fw"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                    </div>
-
-                    
-
-                    <div class="container-fluid shadow p-3">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-fifth">Appointments</h1>
-                            <a href="#" class="shadow-sm dataTable">
-                                <input type="date">
-                            </a>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                
-    
-                                <!-- Table Start -->
-                                <table class="table table-hover dataTable" id="dataTable">
-                                        <thead class="">
+                            <!-- Table Start -->
+                            <table class="table table-hover table-striped" id="dataTable">
+                                    <thead class="">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Client Name</th>
-                                            <th>Mobile</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-    
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">1</td>
-                                                <td>M. Kamran</td>
-                                                <td>03048874922</td>
-                                                <td>19-04-2022</td>
-                                                <td class="text-center">
-                                                    2:00 pm
-                                                </td>
-    
-                                                <td>
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>Open</option>
-                                                        <option value="1">Cancel by Client</option>
-                                                        <option value="2">Cancel by Lawyer</option>
-                                                      </select>
-                                                </td>
-    
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a class="text-first" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="fa fa-ellipsis-h" style="font-size: 19px;"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuButton1">
-                                                          <li><a class="dropdown-item" href="#">
-                                                              <i class="fas fa-eye"></i>
-                                                              view
-                                                          </a></li>
-                                                          <li><a class="dropdown-item" href="#">
-                                                              <i class="fas fa-pencil-alt"></i>
-                                                              edit
-                                                          </a></li>
-                                                          <li><a class="dropdown-item" href="#">
-                                                              <i class="fas fa-trash"></i>
-                                                              delete
-                                                          </a></li>
-                                                          
-                                                        </ul>
-                                                      </div>
-    
-    
-                                                   
-                                                </td>
-                                            </tr>
+                                            <td scope="row">1</td>
+                                            <td>Helper</td>
                                             
-    
-                                        </tbody>
-                                </table>
-                                
-    
-                                
-                                <!-- Table End -->
-    
-    
-                            </div>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="text-first" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-ellipsis-h" style="font-size: 19px;"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu shadow animated--fade-in" aria-labelledby="dropdownMenuButton1">
+                                                      <li><a class="dropdown-item" href="#">
+                                                          <i class="fas fa-pencil-alt"></i>
+                                                          edit
+                                                      </a></li>
+                                                      <li><a class="dropdown-item" href="#">
+                                                          <i class="fas fa-trash"></i>
+                                                          delete
+                                                      </a></li>
+                                                      
+                                                    </ul>
+                                                  </div>
+
+
+                                               
+                                            </td>
+                                        </tr>
+                                        
+
+                                    </tbody>
+                            </table>
+                            
+
+                            
+                            <!-- Table End -->
+
+
                         </div>
                     </div>
-
-                    
-                    <!-- Content Row -->
-
-                                            
-
                 </div>
-                <!-- /.container-fluid -->
+                
+                <!-- Page Content End -->
 
+
+
+
+
+            
             </div>
             <!-- End of Main Content -->
 
@@ -570,23 +468,26 @@
 
     <!-- Bootstrap with bundle JS -->
     <script src="../../js/bootstrap.min.js"></script>
-
+    
     <!-- jQuery JS -->
     <script src="../../js/jquery.min.js"></script>
 
-    <!-- Custom JS -->
-    <script src="../../js/custom.js"></script>
-
+    
     <!-- Font Awesome JS -->
     <script src="../../js/all.min.js"></script>
-
+    
     <!-- Custom scripts for all pages-->
     <script src="../../js/sb-admin-2.min.js"></script>
-
+    
+    
+    <!-- DataTable Plugin js -->
+    <script src="../../plugins/js/jquery.datatable.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../../js/custom.js"></script>
+  
     <script>
-        $(function () {
-            $('.dataTable').dataTable();
-        });
+        $('#dataTable').dataTable();
     </script>
 
 </body>
