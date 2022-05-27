@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Testimonial CSS Plugin -->
+    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.min.css">
+
+    <title><?php echo TITLE; ?></title>
+</head>
+<body>
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-md fixed-top  navbar-dark px-5 py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-5" href="#">Digital Lawyer Street</a>          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto me-5">
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'Home') echo 'active'; ?>" href="index.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'Practice Areas') echo 'active'; ?>" href="practices.php">Practice Areas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'Services') echo 'active'; ?>" href="services.php">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'Lawyers') echo 'active'; ?>" href="lawyers.php">Lawyers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'About Us') echo 'active'; ?>" href="about.php">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if(PAGE == 'Contact Us') echo 'active'; ?>" href="contact.php">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- Navbar End -->
+
+
+
