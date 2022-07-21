@@ -1,5 +1,38 @@
 <?php include('includes/header.php'); ?>
 
+<?php
+// Save button Clicked
+if(isset($_REQUEST['save'])){
+	$lawyerId = $_SESSION['lawyer_id'];
+	$clientName = $_REQUEST['clientName'];
+	$clientEmail = $_REQUEST['clientEmail'];
+	$clientMobileNo = $_REQUEST['clientMobileNo'];
+	$appointmentDate = $_REQUEST['appointmentDate'];
+	$appointmentTime = $_REQUEST['appointmentTime'];
+	$appointmentNote = $_REQUEST['appointmentNote'];
+
+	// Checking Empty Fileds 
+	if($clientName == "" || $clientEmail == "" || $clientMobileNo == "" || $appointmentDate == "" || $appointmentTime == "" || $appointmentNote == "" ){
+		$msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+		<strong>Please!</strong> Fill All Fields.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	  </div>';
+	}
+	
+	// Inserting Data
+	$sql = "INSERT INTO appointment(client_name, lawyer_id, client_email, client_mobile_no, appointment_date, appointment_time, appointment_note) VALUES ('$clientName', '$lawyerId', '$clientEmail', '$clientMobileNo', '$appointmentDate', '$appointmentTime', '$appointmentNote')";
+	$result = mysqli_query($conn, $sql);
+	if($result){
+		$msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+		<strong>Success!</strong> Appointment Added Successfully.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	  </div>';
+
+	}
+
+}
+?>
+
 
 
 <!--start page wrapper -->
@@ -17,14 +50,31 @@
 									<h5 class="mb-0 text-primary">Add New Appointment</h5>
 								</div>
 								<hr>
-								<form class="row g-3">
+
+								<?php
+								if(isset($msg)) echo $msg;
+								?>
+
+								<form method="POST" class="row g-3">
 									
 									<div class="col-md-6" id="clientName">
 										<label for="clientName" class="form-label">Client Name <span class="text-danger">*</span></label>
 										<select name="clientName" id="clientName" class="form-select">
 											<option value="" selected>Select Client</option>
-											<option value="Rana Kamran">Rana Muhammad Kamran</option>
-											<option value="Abdul Rahman">Abdul Rahman</option>
+
+											<?php
+											$lawyerId = $_SESSION['lawyer_id'];
+											$sql = "SELECT * FROM client WHERE lawyer_id = '$lawyerId'";
+											$result = mysqli_query($conn, $sql);
+											while($row = mysqli_fetch_assoc($result)){
+											?>
+
+											<option value="<?php echo $row['client_name'] ?>"><?php echo $row['client_name'] ?></option>
+											
+
+											<?php } ?>
+
+
 										</select>
 									</div>
 									<div class="col-md-6">
@@ -32,23 +82,23 @@
 										<input type="email" class="form-control" name="clientEmail" id="clientEmail">
 									</div>
 									<div class="col-md-6">
-										<label for="inputMobileNo" class="form-label">Mobile No <span class="text-danger">*</span></label>
-										<input type="text" class="form-control" id="inputMobileNo">
+										<label for="clientMobileNo" class="form-label">Mobile No <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" name="clientMobileNo" id="clientMobileNo">
 									</div>
 									<div class="col-md-3">
-										<label for="inputDate" class="form-label">Date <span class="text-danger">*</span></label>
-										<input type="date" class="form-control" id="inputDate">
+										<label for="appointmentDate" class="form-label">Date <span class="text-danger">*</span></label>
+										<input type="date" name="appointmentDate" class="form-control" id="appointmentDate">
 									</div>
 									<div class="col-md-3">
-										<label for="inputTime" class="form-label">Time <span class="text-danger">*</span></label>
-										<input type="time" class="form-control" id="inputTime">
+										<label for="appointmentTime" class="form-label">Time <span class="text-danger">*</span></label>
+										<input type="time" name="appointmentTime" class="form-control" id="appointmentTime">
 									</div>
 									<div class="col-12">
-										<label for="inputNote" class="form-label">Note</label>
-										<textarea class="form-control" id="inputNote" placeholder="Note..." rows="2"></textarea>
+										<label for="appointmentNote" class="form-label">Note</label>
+										<textarea class="form-control" name="appointmentNote" id="appointmentNote" placeholder="Note..." rows="2"></textarea>
 									</div>
 									<div class="col-12">
-										<button type="submit" class="btn btn-primary px-5">Save</button>
+										<button type="submit" name="save" class="btn btn-primary px-5">Save</button>
 										<a href="appointments.php" class="btn btn-secondary px-5">Back</a>
 									</div>
 								</form>

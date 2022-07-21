@@ -29,25 +29,35 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td scope="row">1</td>
-                <td>M. Kamran</td>
-                <td>03048874922</td>
-                <td>19-04-2022</td>
-                <td>2:00 PM</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
 
+
+            <?php
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM appointment WHERE lawyer_id = '$lawyerId'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+            ?>
+
+              <tr>
+                <td scope="row"><?php echo $row['appointment_id'] ?></td>
+                <td><?php echo $row['client_name'] ?></td>
+                <td><?php echo $row['client_mobile_no'] ?></td>
+                <td><?php echo $row['appointment_date'] ?></td>
+                <td><?php echo $row['appointment_time'] ?></td>
+                <td>
+                
+                <?php 
+                if($row['appointment_status'] == -1){
+                  echo '<span class="badge rounded-pill bg-danger">Canceled</span></td>';
+                }
+                elseif($row['appointment_status'] == 0){
+                  echo '<span class="badge rounded-pill bg-info">In Progress</span></td>';
+                } else{
+                  echo '<span class="badge rounded-pill bg-success">Completed</span></td>';
+                }
+                
+                ?>
+                
                 <td>
                   <div class="dropdown">
                     <a
@@ -85,118 +95,8 @@
                   </div>
                 </td>
               </tr>
-              <tr>
-                <td scope="row">2</td>
-                <td>Abdul Rehman</td>
-                <td>03325674922</td>
-                <td>22-05-2023</td>
-                <td>5:00 AM</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <div class="dropdown">
-                    <a
-                      class="text-first"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
-                    </a>
-                    <ul
-                      class="dropdown-menu shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-eye"></i>
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          edit
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">3</td>
-                <td>Hanzla</td>
-                <td>03325674922</td>
-                <td>44-13-2094</td>
-                <td>2:00 AM</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
-
-                <td>
-                  <div class="dropdown">
-                    <a
-                      class="text-first"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
-                    </a>
-                    <ul
-                      class="dropdown-menu shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-eye"></i>
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          edit
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
+              <?php } ?>
+              
             </tbody>
           </table>
         </div>
