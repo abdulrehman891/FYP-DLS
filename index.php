@@ -11,9 +11,14 @@ include('includes/header.php');
         <div class="img-overly"></div>
         
         <div class="banner-content" style="width: 300px; margin-top:150px; margin-left: 250px">
-            <h1 class="text-white">We <span class="text-gold">Fight </span> For Your <span class="text-gold">Right</span> </h1>
+            <h1 class="text-white">We <span class="text-third">Fight </span> For Your <span class="text-third">Right</span> </h1>
             <p class="text-white shadow-sm my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate suscipit eius dolorum maiores, corrupti perferendis.</p>
-            <button class="btn btn-gold rounded-pill">FREE CONSULTATION</button>
+
+            <a href="user/register.php" class="btn btn-outline-warning">Register</a>
+            <a href="user/login.php" class="btn btn-dark">Login</a>
+
+            <br><br>
+            <a href="tel:+923020006566" class="btn btn-gold rounded-pill">FREE CONSULTATION</a>
 
         </div>
 
@@ -82,6 +87,21 @@ include('includes/header.php');
     </section>
     <!-- First Container End -->
 
+    <!-- Join Us Start -->
+    <section class="container-fluid bg-second text-white p-5 animate">
+      <div class="row">
+        <div class="col-md-6 px-5 mb-2">
+          <h1 class="text-white">  <span class="text-third">JOIN</span> US AS <span class="text-third">LAWYER</span></h1>
+          <p  style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius tenetur optio nemo quod rerum veniam voluptatem dignissimos aperiam sunt dolores fugiat reiciendis unde, explicabo corrupti, vitae pariatur soluta officiis? Nesciunt nemo in perferendis soluta ducimus pariatur dolor tempora assumenda, maxime voluptatibus quidem nisi cupiditate corporis sed nostrum vero odio distinctio possimus tempore quia nobis, temporibus sit voluptates. Ratione voluptatum, ducimus nisi libero nemo perferendis fuga magnam et tenetur vitae repellendus voluptatibus corporis a beatae atque commodi sapiente adipisci at alias cupiditate sunt maxime ut iste quas? Dolorem distinctio aliquid, tempore earum doloremque suscipit repellat inventore architecto cum id quis pariatur.</p>
+          <a href="lawyer/lawyerRegistration.php" class="btn btn-warning"> Register</a>
+          <a href="lawyer/lawyerLogin.php" class="btn btn-dark ms-2">Login</a>
+        </div>
+        <div class="col-md-6 px-5 text-center">
+          <img class="img-fluid" style="max-height:400px;" src="assets/images/join/lawyer.jpg" alt="">
+        </div>
+      </div>
+    </section>
+    <!-- Join Us End -->
 
     <!-- Second Container Start -->
     <section class="container-fluid bg-first text-white p-5 animate">
@@ -272,7 +292,7 @@ include('includes/header.php');
         <div class="col-sm-7 text-white text-center">
           <h2>Let's get started. Call us Now for a Free Consultation</h2>
           <p class="">
-            <a href="#" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
+            <a href="tel:+923020006566" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
           </p>
         </div>
       </div>

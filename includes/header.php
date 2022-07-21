@@ -1,3 +1,12 @@
+<?php
+include('dbConnection.php');
+if(!isset($_SESSION)){
+  session_start();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +31,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-md fixed-top  navbar-dark px-5 py-3">
         <div class="container-fluid">
-            <a class="navbar-brand ms-5" href="#">Digital Lawyer Street</a>          
+            <a class="navbar-brand ms-5 text-uppercase" href="index.php">Digital Lawyer Street</a>          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,6 +55,15 @@
               <li class="nav-item">
                 <a class="nav-link <?php if(PAGE == 'Contact Us') echo 'active'; ?>" href="contact.php">Contact Us</a>
               </li>
+
+              <?php
+              if(isset($_SESSION['user_email'])){
+              ?>
+              <li class="nav-item">
+                <a class="nav-link" href="userLogout.php">Logout</a>
+              </li>
+                <?php } ?>
+
             </ul>
           </div>
         </div>

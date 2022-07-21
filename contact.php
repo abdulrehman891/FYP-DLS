@@ -67,7 +67,7 @@ include('includes/header.php') ?>
         <div class="col-sm-7 text-white text-center">
           <h2>Let's get started. Call us Now for a Free Consultation</h2>
           <p class="">
-            <a href="#" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
+            <a href="tel:+923020006566" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
           </p>
         </div>
       </div>

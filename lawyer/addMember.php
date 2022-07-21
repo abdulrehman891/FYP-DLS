@@ -1,6 +1,70 @@
 <?php include('includes/header.php'); ?>
 
 
+<?php 
+// Save button Clicked
+if(isset($_REQUEST['save'])){
+	$memberName = $_REQUEST['memberName'];
+	$memberCity = $_REQUEST['memberCity'];
+	$memberState = $_REQUEST['memberState'];
+	$memberRole = $_REQUEST['memberRole'];
+	$memberMobileNo = $_REQUEST['memberMobileNo'];
+	$memberEmail = $_REQUEST['memberEmail'];
+	$memberPassword = $_REQUEST['memberPassword'];
+	$memberAddress = $_REQUEST['memberAddress'];
+	$memberImage = $_FILES['memberImage']['name'];
+
+	echo $memberName;
+	echo $memberCity;
+	echo $memberState;
+	echo $memberRole;
+	echo $memberMobileNo;
+	echo $memberEmail;
+	echo $memberPassword;
+	echo $memberAddress;
+	echo $memberImage;
+
+
+	// Checking Empty Fields
+	if($memberName == "" || $memberCity == "" || $memberState == "" || $memberRole == "" || $memberMobileNo == "" || $memberEmail == "" ||  $memberPassword == "" || $memberAddress == "" ||  $memberImage == ""){
+		$msg = '<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+		<strong>Please!</strong> Fill All Fields.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	  </div>';
+	}
+
+
+	elseif(mysqli_num_rows(mysqli_query($conn, $sql = "SELECT * FROM member WHERE member_email = '$memberEmail'")) == 1){
+		$msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+		<strong>Sorry!</strong> You are already registered with this email.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	  </div>';	
+		
+	}
+
+	else {
+		// Insert data
+		$sql = "INSERT INTO member(member_name , member_city, member_state, member_role, member_mobile_no, member_email, member_password, member_address, member_image) VALUES ('$memberName', '$memberCity', '$memberState', '$memberRole', '$memberMobileNo', '$memberEmail', '$memberPassword', '$memberAddress', '$memberImage')";
+
+		$result = mysqli_query($conn, $sql);
+		if($result){
+			move_uploaded_file($_FILES['memberImage']['tmp_name'] , 'assets/images/members/' . $memberImage);
+			$msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+			<strong>Congrats!</strong> New Member has been added.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  </div>';
+		}else{
+			$msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Congrats!</strong> New Member has been added.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  </div>';
+
+		}
+
+	}
+}
+?>
+
 
 <!--start page wrapper -->
 <div class="page-wrapper">
@@ -17,69 +81,84 @@
 									<h5 class="mb-0 text-primary">Add New Member</h5>
 								</div>
 								<hr>
+
+
+
+								<?php if(isset($msg)) echo $msg; ?>
+
+
 								
-								<form class="row g-3">
+								<form class="row g-3" method="POST" enctype="multipart/form-data">
 									<div class="col-md-6">
-										<label for="inputFirstName" class="form-label">First Name <span class="text-danger">*</span></label>
-										<input type="email" class="form-control" id="inputFirstName">
+										<label for="memberName" class="form-label">Full Name <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" id="memberName" name="memberName">
 									</div>
+
 									<div class="col-md-6">
-										<label for="inputLastName" class="form-label">Last Name <span class="text-danger">*</span></label>
-										<input type="password" class="form-control" id="inputLastName">
+										<label for="memberCity" class="form-label">City <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" id="memberCity" name="memberCity">
 									</div>
+
 									<div class="col-md-6">
-										<label for="inputEmail" class="form-label">Email <span class="text-danger">*</span></label>
-										<input type="email" class="form-control" id="inputEmail">
+										<label for="memberState" class="form-label">State <span class="text-danger">*</span></label>
+										<select id="memberState" name="memberState" class="form-select">
+											<option value="None" selected>Choose State</option>
+											<option value="Punjab">Punjab</option>
+											<option value="Sindh">Sindh</option>
+											<option value="Balochistan">Balochistan</option>
+											<option value="KPK">KPK</option>
+											<option value="Fedral Area">Fedral Area</option>
+										</select>
 									</div>
+
 									<div class="col-md-6">
-										<label for="inputMobileNo" class="form-label">Mobile No <span class="text-danger">*</span></label>
-										<input type="text" class="form-control" id="inputMobileNo">
+										<label for="memberRole" class="form-label">Role <span class="text-danger">*</span></label>
+										<select id="memberRole" name="memberRole" class="form-select">
+											<option value="None" selected>Choose Role</option>
+
+											<?php $sql = "SELECT * FROM role";
+											$result = mysqli_query($conn, $sql);
+											while($row = mysqli_fetch_assoc($result)){
+											?>
+
+											<option value="<?php echo $row['role_name'] ?>"><?php echo $row['role_name'] ?></option>
+
+											<?php } ?>
+
+										</select>
 									</div>
+
+									<div class="col-md-3">
+										<label for="memberMobileNo" class="form-label">Mobile No. <span class="text-danger">*</span></label>
+										<input type="text" class="form-control" id="memberMobileNo" name="memberMobileNo">
+									</div>
+
+									<div class="col-md-5">
+										<label for="memberEmail" class="form-label">Email <span class="text-danger">*</span></label>
+										<input type="email" class="form-control" id="memberEmail" name="memberEmail">
+									</div>
+
+									<div class="col-md-4">
+										<label for="memberPassword" class="form-label">Password <span class="text-danger">*</span></label>
+										<input type="password" class="form-control" id="memberPassword" value="12345678" name="memberPassword">
+									</div>
+									
 
 									<div class="col-12">
-										<label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
-										<textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"></textarea>
+										<label for="memberAddress" class="form-label">Address <span class="text-danger">*</span></label>
+										<textarea class="form-control" name="memberAddress" id="memberAddress" placeholder="Address..." rows="3"></textarea>
 									</div>
 
 
-									<div class="col-md-6">
-										<label for="inputPassword" class="form-label">Password <span class="text-danger">*</span></label>
-										<input type="password" class="form-control" id="inputPassword">
-									</div>
-									<div class="col-md-6">
-										<label for="inputConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-										<input type="password" class="form-control" id="inputConfirmPassword">
-									</div>
-									<div class="col-md-6">
-										<label for="inputCity" class="form-label">City <span class="text-danger">*</span></label>
-										<input type="text" class="form-control" id="inputCity">
-									</div>
-									<div class="col-md-4">
-										<label for="inputState" class="form-label">State <span class="text-danger">*</span></label>
-										<select id="inputState" class="form-select">
-											<option selected>Choose State</option>
-											<option>Punjab</option>
-											<option>Sindh</option>
-											<option>Balochistan</option>
-											<option>KPK</option>
-											<option>Fedral Area</option>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<label for="inputRole" class="form-label">Role <span class="text-danger">*</span></label>
-										<select id="inputRole" class="form-select">
-											<option selected>Choose Role</option>
-											<option>Helper</option>
-											<option>Assistant</option>
-										</select>
-									</div>
+
+
 									<div class="col-md-12">
-										<label for="Image" class="form-label">Upload Image</label>
-										<input class="form-control" type="file" id="formFile" onchange="preview()">
+										<label for="memberImage" class="form-label">Upload Image</label>
+										<input class="form-control" type="file" id="memberImage" name="memberImage" onchange="preview()">
 										<img id="frame" src="" class="rounded img-fluid" />
 									</div>
 									<div class="col-12">
-										<button type="submit" class="btn btn-primary px-5">Add</button>
+										<button type="submit" name="save" class="btn btn-primary px-5">Save</button>
 										<a href="members.php" class="btn btn-secondary px-5">Back</a>
 									</div>
 								</form>

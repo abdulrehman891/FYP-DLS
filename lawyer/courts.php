@@ -1,5 +1,80 @@
 <?php include('includes/header.php'); ?>
 
+
+<?php
+// Add Clicked
+if(isset($_REQUEST['add'])){
+  $lawyerId = $_SESSION['lawyer_id'];
+  $courtTypeName = $_REQUEST['courtTypeName'];
+  $courtName = $_REQUEST['courtName'];
+
+  if($courtTypeName == "" || $courtName == ""){
+    $msg = '<div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+    <strong>Please!</strong> Fill All Fields.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+  } else{
+    // Insert DATA
+    $sql = "INSERT INTO court(court_type_name , court_name, lawyer_id) VALUES ('$courtTypeName', '$courtName' ,'$lawyerId')";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+      $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>Congratulations!</strong> New Court has been added.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+  } else{
+      $msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+      <strong>Ohh!</strong> System is not responding.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+  
+    }
+
+  }
+
+}
+
+
+// DELETE Clicked
+if(isset($_REQUEST['delete'])){
+  $courtId = $_REQUEST['courtId'];
+  $sql = "DELETE FROM court WHERE court_id='$courtId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Okaay!</strong> Court has been deleted.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';  
+  }
+}
+
+
+
+// UPDATE CLICKED
+if(isset($_REQUEST['update'])){
+  $courtId = $_REQUEST['courtId'];
+  $courtName = $_REQUEST['courtName'];
+
+  $sql = "UPDATE court SET court_name = '$courtName' WHERE court_id = '$courtId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Updated!</strong> Court Name has been update!.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+  }
+
+}
+
+
+
+
+
+?>
+
+
+
+
 <!--start page wrapper -->
 <div class="page-wrapper">
   <div class="page-content">
@@ -13,6 +88,44 @@
       </a>
     </div>
     <hr />
+
+
+<?php if(isset($msg)) echo $msg ?>
+
+
+
+<!-- ######## Edit form open when edit clicked - Start ########## -->
+    
+<?php if(isset($_REQUEST['edit'])){
+      $courtId = $_REQUEST['courtId'];
+      $sql = "SELECT * FROM court WHERE court_id = '$courtId'";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($result);
+      ?>
+      <form class="">
+        <div class="row mb-3">
+          <label for="courtName" class="col-auto col-form-label">Court Name</label>
+          <div class="col-auto">
+            <input type="text"  class="form-control" id="courtName" name="courtName" value="<?php echo $row['court_name'] ?>">
+          </div>
+
+
+          <input type="hidden" name="courtId" value="<?php echo $courtId ?>">
+          <div class="col-auto">
+            <button type="submit" name="update" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </form>
+      
+      <?php } ?>
+      
+      
+      <!-- ############# Edit form open when edit clicked - End ########## -->
+
+
+
+
+
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
@@ -22,27 +135,23 @@
                 <th>No</th>
                 <th>Court</th>
                 <th>Court Type</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+
+            <?php 
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM court WHERE lawyer_id = '$lawyerId'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+
+            ?>
+
               <tr>
-                <td scope="row">1</td>
-                <td>Lahore Branch</td>
-                <td>High Court</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
+                <td scope="row"><?php echo $row['court_id'] ?></td>
+                <td><?php echo $row['court_type_name'] ?></td>
+                <td><?php echo $row['court_name'] ?></td>
 
                 <td>
                   <div class="dropdown">
@@ -59,22 +168,44 @@
                       class="dropdown-menu shadow animated--fade-in"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </a>
+                      
+
+
+                    <li>
+                        <form action="" method="get" >
+                          <input type="hidden" name="courtId" value="<?php echo $row['court_id'] ?>">
+  
+                            <button name="edit" class="dropdown-item">
+                              <i class="fas fa-pencil-alt"></i>
+                              Edit
+                            </button>
+
+                        </form>
+                      
                       </li>
+
+
+
+                     
                       <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        <form action="" method="get">
+                          <input type="hidden" name="courtId" value="<?php echo $row['court_id'] ?>">
+
+                          <button type="submit" name="delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </button>
+                        </form>
                       </li>
+
+
                     </ul>
                   </div>
                 </td>
               </tr>
+
+              <?php } ?>
+
             </tbody>
           </table>
         </div>
@@ -98,21 +229,30 @@
           <div class="row">
             <div class="col-md-12">
               <div class="mb-3">
-                <label for="inputCourtType" class="form-label">Court Type <span class="text-danger">*</span></label>
-                <select class="form-control" name="inputCourtType" id="inputCourtType" placeholder="Select Court">
-                  <option value="" disabled selected> Select Court </option>
-                  <option>Supreme Court </option>
-                  <option>High Court</option>
-                  <option>Session Court</option>
+                <label for="courtTypeName" class="form-label">Court Type <span class="text-danger">*</span></label>
+                <select class="form-control" name="courtTypeName" id="courtTypeName" placeholder="Select Court">
+                  <option value="" disabled selected> Select Court Type</option>
+                  
+                  <?php
+                  $sql = "SELECT * FROM courttype";
+                  $result = mysqli_query($conn, $sql);
+                  while($row = mysqli_fetch_assoc($result)){
+                
+                  ?>
+                  <option value="<?php echo $row['court_type_name'] ?>"><?php echo $row['court_type_name'] ?></option>
+
+                  <?php } ?>
+
+
                 </select>
               </div>
             </div>
             <div class="col-md-12">
-              <label for="inputCourt" class="form-label">Court <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="inputCourt">
+              <label for="courtName" class="form-label">Court Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" name="courtName" id="courtName">
             </div>
             <div class="modal-footer">
-              <input type="submit" value="Add" class="btn btn-primary"></button>
+              <button type="submit" name="add" class="btn btn-primary">Add</button>
               <input type="submit" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
             </div>
 

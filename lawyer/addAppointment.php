@@ -18,28 +18,18 @@
 								</div>
 								<hr>
 								<form class="row g-3">
-									<div class="col-md-6 form-group">
-										<input type="radio" id="test5" value="new" name="type" checked="">
-										<label for="test5"> New Client</label>
-									</div>
-									<div class="col-md-6 form-group">
-
-										<input type="radio" id="test4" value="exists" name="type">
-
-										<label for="test4"> Existing Client</label>
-
-									</div>
-									<div class="col-md-12" id="newClient">
-										<label for="inputNewClient" class="form-label">New Client Name <span class="text-danger">*</span></label>
-										<input type="text" class="form-control" id="inputNewClient">
-									</div>
-									<div class="col-md-12" id="existingClient">
-										<label for="inputExistingClient" class="form-label">Existing Client Name <span class="text-danger">*</span></label>
-										<select name="" id="" class="form-select">
+									
+									<div class="col-md-6" id="clientName">
+										<label for="clientName" class="form-label">Client Name <span class="text-danger">*</span></label>
+										<select name="clientName" id="clientName" class="form-select">
 											<option value="" selected>Select Client</option>
 											<option value="Rana Kamran">Rana Muhammad Kamran</option>
 											<option value="Abdul Rahman">Abdul Rahman</option>
 										</select>
+									</div>
+									<div class="col-md-6">
+										<label for="clientEmail" class="form-label">Client Email <span class="text-danger"> *</span></label>
+										<input type="email" class="form-control" name="clientEmail" id="clientEmail">
 									</div>
 									<div class="col-md-6">
 										<label for="inputMobileNo" class="form-label">Mobile No <span class="text-danger">*</span></label>
@@ -78,19 +68,19 @@
 <?php include('includes/footer.php'); ?>
 
 <script>
-	$(function () {
-		$('#existingClient').attr("class", "d-none");
+	// New Client and Existing Client 
+	// $(function () {
+	// 	$('#existingClient').attr("class", "d-none");
 
-		$('[name = "type"').on("change", function(){
-			var value = $(this).val();
-			console.log(value);
-			if(value == "exists"){
-				$('#newClient').attr("class", "d-none");
-				$('#existingClient').attr("class", "d-block");
-			}else{
-				$('#existingClient').attr("class", "d-none");
-				$('#newClient').attr("class", "d-block");
-			}
-		});
-	});
+	// 	$('[name = "type"]').on("change", function(){
+	// 		var value = $(this).val();
+	// 		if(value == "exists"){
+	// 			$('#newClient').attr("class", "d-none");
+	// 			$('#existingClient').attr("class", "d-block");
+	// 		}else{
+	// 			$('#existingClient').attr("class", "d-none");
+	// 			$('#newClient').attr("class", "d-block");
+	// 		}
+	// 	});
+	// });
 </script>

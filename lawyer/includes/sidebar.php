@@ -28,6 +28,8 @@
 						</li>
 						<li> <a href="./addClient.php"><i class="bx bx-right-arrow-alt"></i>Add Client</a>
 						</li>
+						<li> <a href="./clientRequest.php"><i class="bx bx-right-arrow-alt"></i>Requests</a>
+						</li>
 						
 					</ul>
 				</li>

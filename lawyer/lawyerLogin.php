@@ -1,3 +1,87 @@
+<?php
+include("includes/connection.php");
+
+if(isset($_REQUEST['signin'])){
+
+	$lawyerEmail = $_REQUEST['email'];
+	$lawyerPassword = $_REQUEST['password'];
+
+
+	// if any field is empty
+	if($lawyerEmail == "" || $lawyerPassword == ""){
+		$msg = '<div class="col-12">
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>Please!</strong> Fill All Fields.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		</div>';
+
+
+	} 
+	
+	
+
+	// If lawyer already register AND Not approved by Admin
+	elseif(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lawyer WHERE lawyer_email = '$lawyerEmail' AND lawyer_status = 0 ")) == 1){
+		$msg = '<div class="col-12">
+					<div class="alert alert-info alert-dismissible fade show" role="alert">
+					You are already registered but please wait for <strong>Admin Approval</strong>.
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>';
+	}
+
+
+
+
+	// If lawyer dismissed by Admin
+	elseif(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lawyer WHERE lawyer_email = '$lawyerEmail' AND lawyer_status = 2 ")) == 1){
+		$msg = '<div class="col-12">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>Fake Account!</storng> You cannot join us again.
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>';
+	}
+	
+	
+	
+	
+	
+	else {
+		$email = mysqli_real_escape_string($conn, $_REQUEST['email']);
+		$password = mysqli_real_escape_string($conn, $_REQUEST['password']);
+
+		$sql = "SELECT * FROM lawyer WHERE lawyer_email = '$email' AND lawyer_pass = '$password'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+
+		// Login Successful
+		if(mysqli_num_rows($result) == 1){
+			$_SESSION['lawyer_id'] = $row['lawyer_id'];
+			$_SESSION['lawyer_email'] = $email;
+			header('Location:index.php');
+		}
+		// Wrong Email or Password
+		$msg = '<div class="col-12">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Wrong!</strong> Email or Password.
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		</div>';
+
+	}
+}
+
+
+
+?>
+
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -24,11 +108,7 @@
 	<link href="assets/css/icons.css" rel="stylesheet">
 	<title>Lawyer login</title>
 </head>
-<?php
-include("includes/connection.php");
-// include("includes/header.php");
 
-?>
 <?php
 
 if(isset($_POST['sub'])){
@@ -71,18 +151,27 @@ if(isset($_POST['sub'])){
 							<div class="card-body">
 								<div class="border p-4 rounded">
 									<div class="text-center">
-										<h3 class="">Sign in</h3>
-										<p>Don't have an account yet? <a href="signup1.php">Sign up here</a>
+										<h3 class="">Lawyer Sign in</h3>
+										<p>Don't have an account yet? <a href="lawyerRegistration.php" class="text-secondary">Sign up here</a>
 										</p>
 									</div>
-									<div class="d-grid">
+
+									<!-- Remove Login by Facebook or Gmail -->
+									<!-- <div class="d-grid">
 										<a class="btn my-4 shadow-sm btn-white" href="javascript:;"> <span class="d-flex justify-content-center align-items-center">
                           <img class="me-2" src="assets/images/icons/search.svg" width="16" alt="Image Description">
                           <span>Sign in with Google</span>
 											</span>
 										</a> <a href="javascript:;" class="btn btn-facebook"><i class="bx bxl-facebook"></i>Sign in with Facebook</a>
-									</div>
-									<div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH EMAIL</span>
+									</div> -->
+
+
+									<?php
+									if(isset($msg)) {echo $msg;}
+									?>
+
+
+									<div class="login-separater text-center mb-4"> <span>SIGN IN WITH EMAIL</span>
 										<hr/>
 									</div>
 									<div class="form-body">
@@ -97,19 +186,20 @@ if(isset($_POST['sub'])){
 													<input type="password" class="form-control border-end-0" name="password" id="password"  value="12345678" placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
-											<div class="col-md-6">
+											<!-- <div class="col-md-6">
 												<div class="form-check form-switch">
 													<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
+													<label class="form-check-label" for="flexSwitchCheckChecked" >Remember Me</label>
 												</div>
-											</div>
-											<div class="col-md-6 text-end">	<a href="authentication-forgot-password.html">Forgot Password ?</a>
+											</div> -->
+											<div class="col-md-12 text-end">	<a href="authentication-forgot-password.html" class="text-secondary">Forgot Password ?</a>
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" name="sub" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+													<button type="submit" name="signin" class="btn btn-dark"><i class="bx bxs-lock-open"></i>Sign in
+												</button>
 												</div>
-											</div>
+											</div>											
 										</form>
 									</div>
 								</div>

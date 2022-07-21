@@ -1,7 +1,15 @@
+
 <?php 
 define("TITLE", "Lawyers");
 define("PAGE", "Lawyers");
-include('includes/header.php'); ?>
+include('includes/header.php'); 
+
+// Starting Session
+if(!isset($_SESSION)){
+    session_start();
+}
+
+?>
 
     <!-- Banner Start -->
     <div class="bg-first w-100 d-flex align-items-center justify-content-center" style="min-height: 250px;">
@@ -20,10 +28,13 @@ include('includes/header.php'); ?>
                 <select class="form-select" aria-label="Default select example search" id="aioConceptName">
                     <option value=" " selected class="select-item">Select Lawyer Category</option>
                     <option value=" " class="select-item">See All</option>
-                    <option value="criminal" class="select-item">criminal</option>
-                    <option value="land" class="select-item">land</option>
-                    <option value="divorce" class="select-item">divorce</option>
-                    <option value="Finance" class="select-item">Finance</option>
+                    <option value="business lawyer" class="select-item">Business Lawyer</option>
+                    <option value="constitutional lawyer" class="select-item">Constitutional Lawyer</option>
+                    <option value="family lawyer" class="select-item">Family Lawyer</option>
+                    <option value="intellectual property lawyer" class="select-item">Intellectual Property Lawyer</option>
+                    <option value="property Lawyer" class="select-item">Property Lawyer</option>
+                    <option value="public interest lawyer" class="select-item">Public Interest Lawyer</option>
+                    <option value="civil rights lawyer" class="select-item">Civil Rights Lawyer</option>
                 </select>
             </div>
             <div class="col-auto me-4 pe-5">
@@ -36,21 +47,24 @@ include('includes/header.php'); ?>
 
 
 
-
-
-        
-        
-        
-
-
         <div class="row d-flex " id="myDIV">
+
+
+        <?php
+        
+        $sql = "SELECT * FROM lawyer WHERE lawyer_status = 1";
+        $result = mysqli_query($conn,$sql);
+        while($row = mysqli_fetch_assoc($result)) {
+
+        
+        ?>
            <div class="col-md-4 my-4 mycard">
                 <div mx-auto class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer1.jpeg" class="card-img-top" alt="...">
+                    <img src="lawyer/assets/images/lawyers/<?php echo $row['lawyer_image'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Anas Makki</h5>
-                        <p class="text-muted">State of Art</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title"><?php echo $row['lawyer_fname'] . " " .  $row['lawyer_lname'] ?></h5>
+                        <p class="text-muted"><?php echo $row['lawyer_spec'] ?></p>
+                        <p class="card-text"><?php echo $row['lawyer_description'] ?></p>
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-between">
                         <div>
@@ -60,132 +74,20 @@ include('includes/header.php'); ?>
                             <i class="fa fa-star "></i>
                             <i class="fa fa-star "></i>
                         </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer2.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Mah Jabeen</h5>
-                        <p class="text-muted">Criminal Expert</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
-           
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer3.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Raheel Baig</h5>
-                        <p class="text-muted">Divorce Law</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer3.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Zaila Jutt</h5>
-                        <p class="text-muted">Divorce Law</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer4.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Amna Jamil</h5>
-                        <p class="text-muted">Land Expert</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
+                        <form action="lawyerProfile.php" method="get">
+                            <input type="hidden" name="userId" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id'] ?>">
+                            <input type="hidden" name="lawyerId" value="<?php echo $row['lawyer_id'] ?>">
+                            <input type="hidden" name="lawyerEmail" value="<?php echo $row['lawyer_email'] ?>">
+                            <button type="submit" class="btn btn-grey">Profile</button>
+                        </form>
+                       
                     </div>
                 </div>
            </div>
 
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer5.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Anas Makki</h5>
-                        <p class="text-muted">Banking & Finance Expert</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
-           <div class="col-md-4 my-4 mycard">
-                <div class="card mx-auto" style="width: 18rem;">
-                    <img src="assets/images/lawyers/lawyer6.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ayesha Hanif</h5>
-                        <p class="text-muted">Banking & Finance Expert</p>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="card-footer d-flex flex-row justify-content-between">
-                        <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
-                        </div>
-                        <a href="#" class="btn btn-grey">Hire Me</a>
-                    </div>
-                </div>
-           </div>
+        <?php } ?>
+
+           
         </div>
     </div>
     <!-- Our Lawyers End -->

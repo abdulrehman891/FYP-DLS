@@ -1,5 +1,69 @@
 <?php include('includes/header.php'); ?>
 
+
+<?php 
+
+// Add Clicked
+if(isset($_REQUEST['add'])){
+  $lawyerId = $_SESSION['lawyer_id'];
+  $caseTypeName = $_REQUEST['caseTypeName'];
+
+  // Insert DATA
+  $sql = "INSERT INTO casetype (case_type_name , lawyer_id) VALUES ('$caseTypeName', '$lawyerId')";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Congratulations!</strong> New Case Type has been added.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+} else{
+    $msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+    <strong>Ohh!</strong> System is not responding.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+
+  }
+}
+
+
+
+// DELETE Clicked
+if(isset($_REQUEST['delete'])){
+  $caseTypeId = $_REQUEST['caseTypeId'];
+  $sql = "DELETE FROM casetype WHERE case_type_id='$caseTypeId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Okaay!</strong> Case Type has been deleted.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';  
+  }
+}
+
+
+
+
+// UPDATE CLICKED
+if(isset($_REQUEST['update'])){
+  $caseTypeId = $_REQUEST['caseTypeId'];
+  $caseTypeName = $_REQUEST['caseTypeName'];
+
+  $sql = "UPDATE casetype SET case_type_name = '$caseTypeName' WHERE case_type_id = '$caseTypeId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Updated!</strong> Case Type has been changed!.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+  }
+
+}
+
+
+
+
+?>
+
 <!--start page wrapper -->
 <div class="page-wrapper">
   <div class="page-content">
@@ -13,6 +77,43 @@
       </a>
     </div>
     <hr />
+
+
+
+    <?php
+    if(isset($msg)) echo $msg;
+    ?>
+
+
+
+ <!-- ######## Edit form open when edit clicked - Start ########## -->
+    
+ <?php if(isset($_REQUEST['edit'])){
+      $caseTypeId = $_REQUEST['caseTypeId'];
+      $sql = "SELECT * FROM casetype WHERE case_type_id = '$caseTypeId'";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($result);
+      ?>
+      <form class="">
+        <div class="row mb-3">
+          <label for="caseTypeName" class="col-auto col-form-label">Case Type</label>
+          <div class="col-auto">
+            <input type="text"  class="form-control" id="caseTypeName" name="caseTypeName" value="<?php echo $row['case_type_name'] ?>">
+          </div>
+          <input type="hidden" name="caseTypeId" value="<?php echo $caseTypeId ?>">
+          <div class="col-auto">
+            <button type="submit" name="update" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </form>
+      
+      <?php } ?>
+      
+      
+      <!-- ############# Edit form open when edit clicked - End ########## -->
+
+
+
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
@@ -21,28 +122,23 @@
               <tr>
                 <th>No</th>
                 <th>Case Type</th>
-                <th>Case Sub Type</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+
+
+            <?php 
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM casetype WHERE lawyer_id = '$lawyerId'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+
+            ?>
+
               <tr>
-                <td scope="row">1</td>
-                <td>Killing</td>
-                <td>Murder</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
+                <td scope="row"><?php echo $row['case_type_id'] ?></td>
+                <td><?php echo $row['case_type_name'] ?></td>
 
                 <td>
                   <div class="dropdown">
@@ -59,22 +155,42 @@
                       class="dropdown-menu shadow animated--fade-in"
                       aria-labelledby="dropdownMenuButton1"
                     >
+
+
                       <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </a>
+                        <form action="" method="get" >
+                          <input type="hidden" name="caseTypeId" value="<?php echo $row['case_type_id'] ?>">
+  
+                            <button name="edit" class="dropdown-item">
+                              <i class="fas fa-pencil-alt"></i>
+                              Edit
+                            </button>
+
+                        </form>
+                      
                       </li>
+
+
                       <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                        <form action="" method="get">
+                          <input type="hidden" name="caseTypeId" value="<?php echo $row['case_type_id'] ?>">
+
+                          <button type="submit" name="delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </button>
+                        </form>
                       </li>
+
+
+
                     </ul>
                   </div>
                 </td>
               </tr>
+
+              <?php } ?>
+
             </tbody>
           </table>
         </div>
@@ -97,15 +213,12 @@
         <form action="" method="get">
           <div class="row">
             <div class="col-md-12">
-              <label for="inputCaseType" class="form-label">Case Type <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="inputCaseType">
+              <label for="caseTypeName" class="form-label">Case Type <span class="text-danger">*</span></label>
+              <input type="text" name="caseTypeName" class="form-control" id="caseTypeName">
             </div>
-            <div class="col-12">
-              <label for="inputCaseSubType" class="form-label">Case Sub Type <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="inputCaseSubType">
-            </div>
+    
             <div class="modal-footer">
-              <input type="submit" value="Add" class="btn btn-primary"></button>
+            <button type="submit" name="add" class="btn btn-primary">Add</button>
               <input type="submit" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
             </div>
 

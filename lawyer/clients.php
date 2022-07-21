@@ -1,5 +1,26 @@
 <?php include('includes/header.php'); ?>
 
+
+<?php
+// If delete button clicked
+if(isset($_REQUEST['delete'])){
+  $clientId = $_REQUEST['clientId'];
+  $lawyerId = $_SESSION['lawyer_id'];
+
+  $sql = "DELETE FROM client WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong>Okay!</strong> Client has been deleted.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+  }
+}
+
+
+
+?>
+
 <!--start page wrapper -->
 <div class="page-wrapper">
   <div class="page-content">
@@ -13,6 +34,11 @@
       </a>
     </div>
     <hr />
+
+
+    <?php if(isset($msg)) echo $msg; ?>
+
+
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
@@ -22,29 +48,28 @@
                 <th>No</th>
                 <th>Client Name</th>
                 <th>Mobile</th>
-                <th>Case</th>
-                <th>Status</th>
+                <th>City</th>
+                <th>Date Created</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+
+
+            <?php
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM client WHERE lawyer_id = '$lawyerId' AND is_assign = 1";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+           
+            ?>
+
               <tr>
-                <td scope="row">1</td>
-                <td>M. Kamran</td>
-                <td>03048874922</td>
-                <td>1</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
+                <td scope="row"><?php echo $row['client_id'] ?></td>
+                <td><?php echo $row['client_name'] ?></td>
+                <td><a href="https://wa.me/<?php echo $row['client_mobile'] ?>"><?php echo $row['client_mobile'] ?></a></td>
+                <td><?php echo $row['client_city'] ?></td>
+                <td><?php echo $row['date_created'] ?></td>
 
                 <td>
                   <div class="dropdown">
@@ -61,138 +86,37 @@
                       class="dropdown-menu shadow animated--fade-in"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-eye"></i>
-                          view
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          edit
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">2</td>
-                <td>Abdul Rehman</td>
-                <td>03325674922</td>
-                <td>3</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
 
-                <td>
-                  <div class="dropdown">
-                    <a
-                      class="text-first"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
-                    </a>
-                    <ul
-                      class="dropdown-menu shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
                       <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-eye"></i>
-                          view
-                        </a>
+                        <form action="editClient.php" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name="edit" class="dropdown-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            Edit
+                          </button>
+                        </form>
                       </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          edit
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          delete
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">3</td>
-                <td>Hanzla</td>
-                <td>03325674922</td>
-                <td>2</td>
-                <td class="text-center">
-                  <!-- Checked switch -->
-                  <div class="form-check form-switch text-first">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="flexSwitchCheckChecked"
-                      checked
-                    />
-                  </div>
-                </td>
 
-                <td>
-                  <div class="dropdown">
-                    <a
-                      class="text-first"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
-                    </a>
-                    <ul
-                      class="dropdown-menu shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
+
                       <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-eye"></i>
-                          view
-                        </a>
+                        <form action="" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name="delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </a>
+                        </form>
                       </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          edit
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          delete
-                        </a>
-                      </li>
+
+
                     </ul>
                   </div>
                 </td>
               </tr>
+              
+              <?php    
+            } ?>
+
             </tbody>
           </table>
         </div>
