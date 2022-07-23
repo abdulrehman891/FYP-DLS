@@ -19,7 +19,7 @@ if(isset($_REQUEST['update'])){
 	$clientReferenceNo = $_REQUEST['clientReferenceNo'];
 
 	// Update data
-	$sql = "UPDATE client  SET client_name = '$clientName', client_gender= '$clientGender', client_email = '$clientEmail', client_mobile = '$clientMobile', client_address = '$clientAddress', client_city = '$clientCity', client_state = '$clientState', client_reference_name = '$clientReferenceName' , client_reference_no = '$clientReferenceNo' WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId' ";
+	$sql = "UPDATE client SET client_name = '$clientName', client_gender= '$clientGender', client_email = '$clientEmail', client_mobile = '$clientMobile', client_address = '$clientAddress', client_city = '$clientCity', client_state = '$clientState', client_reference_name = '$clientReferenceName' , client_reference_no = '$clientReferenceNo' WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId' ";
 
 	if(mysqli_query($conn, $sql)){
 		$msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">

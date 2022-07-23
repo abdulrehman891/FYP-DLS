@@ -3,7 +3,6 @@
 <?php
 include('includes/header.php');
 
-
 ?>
 
 <!-- Header End -->

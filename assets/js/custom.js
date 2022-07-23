@@ -5,7 +5,7 @@ $(document).ready(function () {
  
 $(function () {
     $(window).scroll(function () { 
-        $('nav').toggleClass('bg-first , shadow-lg', $(this).scrollTop()> 50);
+        $('.custom-nav').toggleClass('bg-first , shadow-lg', $(this).scrollTop()> 50);
     });
 });
 

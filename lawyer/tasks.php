@@ -1,5 +1,37 @@
 <?php include('includes/header.php'); ?>
 
+<?php 
+// DELETE Button Clicked
+if(isset($_REQUEST['delete'])){
+  $taskId = $_REQUEST['taskId'];
+  $sql = "DELETE FROM task WHERE task_id='$taskId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Okaay!</strong> Task has been deleted.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';  
+  }
+}
+
+
+// Complete Button Clicked
+if(isset($_REQUEST['complete'])){
+  $taskId = $_REQUEST['taskId'];
+  $sql = "UPDATE task SET task_status = 1 WHERE task_id = '$taskId' ";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+      $msg =  '
+      <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+          <strong >Nice!</strong> Task has been Completed!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+  }
+}
+
+
+?>
+
 <!--start page wrapper -->
 <div class="page-wrapper">
   <div class="page-content">
@@ -25,24 +57,58 @@
                 <th>Start Date</th>
                 <th>Deadline</th>
                 <th>Members</th>
-                <th>Status</th>
                 <th>Priority</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+
+            <?php 
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM task WHERE lawyer_id = '$lawyerId'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+           
+            ?>
+
               <tr>
-                <td scope="row">1</td>
-                <td>Find Evidence</td>
+                <td scope="row"><?php echo $row['task_id'] ?></td>
+                <td><?php echo $row['task_subject'] ?></td>
                 <td>
-                    Rana Muhammad Kamran <br>
+                <?php echo $row['client_name'] ?> <br>
                     Case Number : 58989
                 </td>
-                <td>05-05-2022</td>
-                <td>20-05-2022</td>
-                <td>Arslan Naeem</td>
-                <td><span class="badge bg-success">Completed</span></td>
-                <td><span class="badge bg-info">Medium</span></td>
+                <td><?php echo $row['task_start_date'] ?></td>
+                <td><?php echo $row['task_deadline'] ?></td>
+                <td><?php echo $row['task_assign_to'] ?></td>
+
+                <td>
+                  <?php
+                  if($row['task_priority'] == "urgent") {echo '<span class="badge bg-warning">URGENT</span>';}
+                  elseif($row['task_priority'] ==  "high") {echo '<span class="badge bg-info">HIGH</span>';}
+                  elseif($row['task_priority'] ==  "medium") {echo '<span class="badge bg-dark">Medium</span>';}
+                  else {echo '<span class="badge bg-light text-dark">LOW</span>';}
+                  ?>
+                </td>
+
+                <?php 
+                // Setting Status Deffered if Date is passed
+                $taskId = $row['task_id'];
+                if(date("Y-m-d") > $row['task_deadline'] && $row['task_status'] != 1){
+                  mysqli_query($conn, "UPDATE task SET task_status = -1 WHERE task_id = '$taskId'");
+                }
+                ?>
+
+
+                <td>
+                  <?php
+                  if($row['task_status'] == -1) {echo '<span class="badge bg-danger">Deffered</span>';}
+                  elseif($row['task_status'] == 0) {echo '<span class="badge bg-info">In Progress</span>';}
+                  else {echo '<span class="badge bg-success">Completed</span>';}
+                  ?>
+                </td>
+
 
                 <td>
                   <div class="dropdown">
@@ -59,22 +125,50 @@
                       class="dropdown-menu shadow animated--fade-in"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-pencil-alt"></i>
-                          Edit
-                        </a>
+                      
+
+                    <li>
+                        <form action="editTask.php" method="get">
+                          <input type="hidden" name="taskId" value="<?php echo $row['task_id'] ?>">
+                          <button type="submit" name="edit" class="dropdown-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            Edit
+                          </button>
+                        </form>
                       </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          <i class="fas fa-trash"></i>
-                          Delete
-                        </a>
+                    
+
+                      <li class="<?php if($row['task_status'] == -1 || $row['task_status'] == 1) echo 'd-none' ?>">
+                        <form action="" method="get">
+                          <input type="hidden" name="taskId" value="<?php echo $row['task_id'] ?>">
+
+                          <button type="submit" name="complete" class="dropdown-item">
+                          <i class="fas fa-check"></i>
+                            Complete
+                          </button>
+                        </form>
                       </li>
+
+
+
+                      <li>
+                        <form action="" method="get">
+                          <input type="hidden" name="taskId" value="<?php echo $row['task_id'] ?>">
+
+                          <button type="submit" name="delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </button>
+                        </form>
+                      </li>
+
+
                     </ul>
                   </div>
                 </td>
-              </tr>              
+              </tr>   
+              
+              <?php } ?>
             </tbody>
           </table>
         </div>

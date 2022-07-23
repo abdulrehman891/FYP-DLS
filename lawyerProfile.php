@@ -202,7 +202,7 @@ $row = mysqli_fetch_assoc($result);
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <a href="lawyers.php"  name="back" class="btn btn-dark px-4" >Back</a>
+                                            <a href="<?php echo 'javascript:history.go(-1)' ?>"  name="back" class="btn btn-dark px-4" >Back</a>
                                             
                                             
                                             <input type="hidden" name="userId" value="<?php echo $_SESSION['user_id'] ?>">

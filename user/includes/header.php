@@ -5,8 +5,8 @@ if(!(isset($_SESSION))){
 }
 
 // User must login to access dashboard
-if(!$_SESSION['lawyer_email']){
-	header('Location:lawyerLogin.php');
+if(!$_SESSION['user_email']){
+	header('Location:login.php');
 }
 
 ?>

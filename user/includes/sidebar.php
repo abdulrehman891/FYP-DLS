@@ -12,10 +12,30 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
 				<li>
-					<a href="./index.php"><div class="parent-icon"><i class='bx bx-home-circle'></i>
-					</div>
-					<div class="menu-title">Dashboard</div></a>
+					<a href="./index.php"><i class="fas fa-user-alt"></i>
+					<div class="menu-title">Profile</div></a>
 				</li>
+
+				<li>
+					<a href="./myLawyer.php"><i class="fas fa-user-graduate"></i>
+					<div class="menu-title">My Lawyer</div></a>
+				</li>
+				
+				<li>
+					<a href="./userFeedback.php"><i class="fas fa-comment-alt"></i>
+					<div class="menu-title">Feedback</div></a>
+				</li>
+				
+				<li>
+					<a href="./changePassword.php"><i class="fas fa-key"></i>
+					<div class="menu-title">Change Password</div></a>
+				</li>
+
+				<li>
+					<a href="./includes/logout.php"><i class="fas fa-sign-out-alt"></i>
+					<div class="menu-title">Logout</div></a>
+				</li>
+
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-user-plus"></i>
@@ -27,6 +47,8 @@
 						<li> <a href="./clients.php"><i class="bx bx-right-arrow-alt"></i>View Clients</a>
 						</li>
 						<li> <a href="./addClient.php"><i class="bx bx-right-arrow-alt"></i>Add Client</a>
+						</li>
+						<li> <a href="./clientRequest.php"><i class="bx bx-right-arrow-alt"></i>Requests</a>
 						</li>
 						
 					</ul>
@@ -176,13 +198,6 @@
 			
 			
 	
-				<li>
-					<a href="https://codervent.com/rocker/documentation/index.html" target="_blank">
-						<div class="parent-icon"><i class="bx bx-folder"></i>
-						</div>
-						<div class="menu-title">Documentation</div>
-					</a>
-				</li>
 				<li>
 					<a href="https://themeforest.net/user/codervent" target="_blank">
 						<div class="parent-icon"><i class="bx bx-support"></i>

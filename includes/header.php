@@ -29,7 +29,7 @@ if(!isset($_SESSION)){
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-md fixed-top  navbar-dark px-5 py-3">
+    <nav class="navbar custom-nav navbar-expand-md fixed-top navbar-dark px-5 py-3">
         <div class="container-fluid">
             <a class="navbar-brand ms-5 text-uppercase" href="index.php">Digital Lawyer Street</a>          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,9 @@ if(!isset($_SESSION)){
               <?php
               if(isset($_SESSION['user_email'])){
               ?>
+              <li class="nav-item">
+                <a class="nav-link" href="user/index.php">Profile</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="userLogout.php">Logout</a>
               </li>

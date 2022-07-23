@@ -78,18 +78,24 @@
 				</li>
 				<li>
 					<a href="lawyers.php">
-						<div class="parent-icon"><i class="fa-solid fa-user-group"></i>
-						</div>
+						<i class="fas fa-user-graduate"></i>
 						<div class="menu-title">Lawyers</div>
 					</a>
 				</li>
 				<li>
 					<a href="requests.php">
-						<div class="parent-icon"><i class="fa-solid fa-handshake"></i>
-						</div>
+						<i class="fa-solid fa-handshake-alt"></i>
 						<div class="menu-title">Requests</div>
 					</a>
 				</li>
+
+				<li>
+					<a href="userFeedback.php">
+						<i class="fas fa-comment-alt"></i>
+						<div class="menu-title">Feedback</div>
+					</a>
+				</li>
+
 				<li>
 					<a href="tasks.php">
 						<div class="parent-icon"><i class="fas fa-tasks"></i>
