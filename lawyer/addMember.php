@@ -4,6 +4,7 @@
 <?php 
 // Save button Clicked
 if(isset($_REQUEST['save'])){
+	$lawyerId = $_SESSION['lawyer_id'];
 	$memberName = $_REQUEST['memberName'];
 	$memberCity = $_REQUEST['memberCity'];
 	$memberState = $_REQUEST['memberState'];
@@ -13,16 +14,6 @@ if(isset($_REQUEST['save'])){
 	$memberPassword = $_REQUEST['memberPassword'];
 	$memberAddress = $_REQUEST['memberAddress'];
 	$memberImage = $_FILES['memberImage']['name'];
-
-	echo $memberName;
-	echo $memberCity;
-	echo $memberState;
-	echo $memberRole;
-	echo $memberMobileNo;
-	echo $memberEmail;
-	echo $memberPassword;
-	echo $memberAddress;
-	echo $memberImage;
 
 
 	// Checking Empty Fields
@@ -36,7 +27,7 @@ if(isset($_REQUEST['save'])){
 
 	elseif(mysqli_num_rows(mysqli_query($conn, $sql = "SELECT * FROM member WHERE member_email = '$memberEmail'")) == 1){
 		$msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-		<strong>Sorry!</strong> You are already registered with this email.
+		<strong>Sorry!</strong> This member already registered with this email.
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	  </div>';	
 		
@@ -44,7 +35,7 @@ if(isset($_REQUEST['save'])){
 
 	else {
 		// Insert data
-		$sql = "INSERT INTO member(member_name , member_city, member_state, member_role, member_mobile_no, member_email, member_password, member_address, member_image) VALUES ('$memberName', '$memberCity', '$memberState', '$memberRole', '$memberMobileNo', '$memberEmail', '$memberPassword', '$memberAddress', '$memberImage')";
+		$sql = "INSERT INTO member(lawyer_id , member_name , member_city, member_state, member_role, member_mobile_no, member_email, member_password, member_address, member_image) VALUES ('$lawyerId', '$memberName', '$memberCity', '$memberState', '$memberRole', '$memberMobileNo', '$memberEmail', '$memberPassword', '$memberAddress', '$memberImage')";
 
 		$result = mysqli_query($conn, $sql);
 		if($result){
@@ -116,7 +107,11 @@ if(isset($_REQUEST['save'])){
 										<select id="memberRole" name="memberRole" class="form-select">
 											<option value="None" selected>Choose Role</option>
 
-											<?php $sql = "SELECT * FROM role";
+
+
+											<?php
+											$lawyerId = $_SESSION['lawyer_id'];
+											$sql = "SELECT * FROM role WHERE lawyer_id = '$lawyerId'";
 											$result = mysqli_query($conn, $sql);
 											while($row = mysqli_fetch_assoc($result)){
 											?>

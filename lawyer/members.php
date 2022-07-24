@@ -84,7 +84,8 @@ if(isset($_REQUEST['disable'])){
             <tbody>
 
             <?php
-            $sql = "SELECT * FROM member";
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM member WHERE lawyer_id = '$lawyerId'";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
 

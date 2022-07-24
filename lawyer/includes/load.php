@@ -1,10 +1,13 @@
 
 <?php 
+if(!isset($_SESSION)){
+    session_start();
+}
 
 $conn = mysqli_connect("localhost", "root", "", "dls");
 
-
-$sql = "SELECT * FROM appointment WHERE appointment_status = 1 OR appointment_status = 0";
+$lawyerId = $_SESSION['lawyer_id'];
+$sql = "SELECT * FROM appointment WHERE lawyer_id = '$lawyerId' AND (appointment_status = 1 OR appointment_status = 0)";
 $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)){
     $data[] = array(
