@@ -38,7 +38,7 @@ if(isset($_REQUEST['complete'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Tasks</h6>
       <a href="addTask.php" class="d-none d-sm-inline-block shadow-sm">
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-dark">
           <i class="fas fa-plus"></i>
           Add Task
         </button>

@@ -55,7 +55,7 @@ if(isset($_REQUEST['disable'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Members</h6>
       <a href="addMember.php" class="d-none d-sm-inline-block shadow-sm">
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-dark">
           <i class="fas fa-plus"></i>
           Add Member
         </button>

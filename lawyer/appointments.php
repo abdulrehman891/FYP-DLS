@@ -46,8 +46,8 @@ if(isset($_REQUEST['cancel'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Appointments</h6>
       <a href="addAppointment.php" class="d-none d-sm-inline-block shadow-sm">
-        <button class="btn btn-sm btn-primary">
-          <i class="fas fa-plus"></i>
+        <button class="btn btn-sm btn-dark">
+          <i class="fas fa-plus fa-fw"></i>
           Add Appointment
         </button>
       </a>

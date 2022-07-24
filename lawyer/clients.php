@@ -27,7 +27,7 @@ if(isset($_REQUEST['delete'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Clients</h6>
       <a href="addClient.php" class="d-none d-sm-inline-block shadow-sm">
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-dark">
           <i class="fas fa-plus"></i>
           Add Client
         </button>
@@ -67,7 +67,7 @@ if(isset($_REQUEST['delete'])){
               <tr>
                 <td scope="row"><?php echo $row['client_id'] ?></td>
                 <td><?php echo $row['client_name'] ?></td>
-                <td><a href="https://wa.me/<?php echo $row['client_mobile'] ?>"><?php echo $row['client_mobile'] ?></a></td>
+                <td><a style="color:grey;" title="Click to Chat" href="https://wa.me/<?php echo $row['client_mobile'] ?>"><?php echo $row['client_mobile'] ?></a></td>
                 <td><?php echo $row['client_city'] ?></td>
                 <td><?php echo $row['date_created'] ?></td>
 

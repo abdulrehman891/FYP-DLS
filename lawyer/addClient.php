@@ -42,12 +42,12 @@ if(isset($_REQUEST['addClient'])){
 			<div class="page-content">
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
-						<div class="card border-top border-0 border-4 border-primary">
+						<div class="card border-top border-0 border-4 border-dark">
 							<div class="card-body p-5">
 								<div class="card-title d-flex align-items-center">
-									<div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+									<div><i class="bx bxs-user me-1 font-22 text-dark"></i>
 									</div>
-									<h5 class="mb-0 text-primary">Add New Client</h5>
+									<h5 class="mb-0 text-dark">Add New Client</h5>
 								</div>
 								<hr>
 
@@ -118,7 +118,7 @@ if(isset($_REQUEST['addClient'])){
 									</div>
 
 									<div class="col-12">
-										<button type="submit" name="addClient" class="btn btn-primary px-5">Add Client</button>
+										<button type="submit" name="addClient" class="btn btn-outline-dark px-5">Add Client</button>
 										<a href="<?php echo 'javascript:history.go(-1)' ?>" class="btn btn-secondary px-5">Back</a>
 									</div>
 								</form>

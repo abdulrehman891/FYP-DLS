@@ -81,7 +81,7 @@ if(isset($_REQUEST['update'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Court</h6>
       <a href="#" class="d-none d-sm-inline-block shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <button class="btn btn-sm btn-primary">
+        <button class="btn btn-sm btn-dark">
           <i class="fas fa-plus"></i>
           Add Court
         </button>
@@ -112,7 +112,7 @@ if(isset($_REQUEST['update'])){
 
           <input type="hidden" name="courtId" value="<?php echo $courtId ?>">
           <div class="col-auto">
-            <button type="submit" name="update" class="btn btn-primary">Update</button>
+            <button type="submit" name="update" class="btn btn-outline-dark">Update</button>
           </div>
         </div>
       </form>
@@ -252,7 +252,7 @@ if(isset($_REQUEST['update'])){
               <input type="text" class="form-control" name="courtName" id="courtName">
             </div>
             <div class="modal-footer">
-              <button type="submit" name="add" class="btn btn-primary">Add</button>
+              <button type="submit" name="add" class="btn btn-outline-dark">Add</button>
               <input type="submit" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
             </div>
 

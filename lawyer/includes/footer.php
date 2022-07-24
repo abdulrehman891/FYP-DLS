@@ -10,7 +10,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	<div class="switcher-wrapper">
+	<!-- <div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -116,12 +116,68 @@
 	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+
+	<!-- full Calender JS -->
+	<script src="assets/plugins/full-calendar/full-calendar.js"></script>
+
+
 	<script src="../assets/js/custom.js"></script>
+	
+
+		
+	
+	
 	<script>
 		$(document).ready(function() {
 			$('#example').DataTable();
 		  } );
 	</script>
+
+
+		  <script>
+			document.addEventListener('DOMContentLoaded', function() {
+    var initialLocaleCode = 'en';
+    var localeSelectorEl = document.getElementById('locale-selector');
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      initialDate: new Date(),
+      locale: initialLocaleCode,
+      buttonIcons: true, // show the prev/next text
+      weekNumbers: true,
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      dayMaxEvents: true, // allow "more" link when too many events
+      events: 'includes/load.php',
+    });
+
+    calendar.render();
+
+    // build the locale selector's options
+    calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
+      var optionEl = document.createElement('option');
+      optionEl.value = localeCode;
+      optionEl.selected = localeCode == initialLocaleCode;
+      optionEl.innerText = localeCode;
+      localeSelectorEl.appendChild(optionEl);
+    });
+
+    // when the selected option changes, dynamically change the calendar option
+    localeSelectorEl.addEventListener('change', function() {
+      if (this.value) {
+        calendar.setOption('locale', this.value);
+      }
+    });
+
+  });
+		  </script>
+
+
 	<script>
 		$(document).ready(function() {
 			var table = $('.example2').DataTable( {
@@ -130,28 +186,28 @@
                 "buttons": [ 
 				{  
                         extend: 'copy',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-copy"></i> Copy'  
                     }, 
                    
                     {  
                         extend: 'excel',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-excel"></i> Excel'  
                     },  
                     {  
                         extend: 'pdf',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-pdf"></i> Pdf'  
                     },  
                     {  
                         extend: 'csv',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-csv"></i> CSV'  
                     },  
                     {  
                         extend: 'print',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-print"></i> Print'  
                     }  
                 ]  

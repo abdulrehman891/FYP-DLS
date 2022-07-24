@@ -3,7 +3,6 @@
 <?php
 include('includes/header.php');
 
-
 ?>
 
 <!-- Header End -->
@@ -84,101 +83,17 @@ include('includes/header.php');
 				  </div> 
 				</div><!--end row-->
 
-				<!-- Appointment Dashboard -->
+			
+				
+				<!-- Calendar Start -->
 				<div class="row shadow bg-white p-3 mb-4">
 					<div class="row d-flex justify-content-between">
-						<div class="col-auto">
-							<h4>Appointment</h4>
-						</div>
-						<div class="col-auto">
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
-								<input type="text" class="form-control" value="14-04-2022"  aria-describedby="basic-addon1">
-							</div>
-						</div>
-					</div> <hr>
-					<div class="row">
-					<table id="example2" class="table table-striped table-bordered example2">
-						<thead class="">
-							<tr>
-							<th>No</th>
-							<th>Client Name</th>
-							<th>Date</th>
-							<th>Time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							<td scope="row">2</td>
-							<td>
-								Mr Abrar
-							</td>
-							<td>
-								14-05-2022
-							</td>
-							<td>
-								5:53 AM
-							</td>
-
-							</tr>
-						</tbody>
-						</table>
-					</div>
-				</div><!--Appointement Dashboard end row-->
-
-
-				<!-- OnBoard Dashboard -->
-				<div class="row shadow bg-white p-3">
-					<div class="row d-flex justify-content-between">
-						<div class="col-auto">
-							<h4>Case Board</h4>
-						</div>
-						<div class="col-auto">
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
-								<input type="text" class="form-control" value="14-04-2022"  aria-describedby="basic-addon1">
-							</div>
-						</div>
-					</div> <hr>
-					<div class="row">
-						<table id="example2" class="table table-striped table-bordered example2">
-						<thead class="">
-							<tr>
-							<th>No</th>
-							<th>Case No</th>
-							<th>Case</th>
-							<th>Next Date</th>
-							<th>Status</th>
-							<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-							<td scope="row">1</td>
-							<td>
-								58939 <br>
-								Murder
-							</td>
-							<td>
-								Rana Kamran <br>
-								<b>VS</b> <br>
-								Mr Saim
-							</td>
-							<td>
-								15-02-2022
-							</td>
-							<td>Pending</td>
-
-							<td>
-								<a href="#" style="color:black;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-calendar"></i> Next Date</a>
-							</td>
-							</tr>
-						</tbody>
-						</table>
-					</div>
-				</div><!--OnBoard Dashboard end row-->
-
-			
+						<div id="calendar"></div>
+					</div> 				
+				</div>
+				<!--Calendar end-->
+				
+						
 
 			</div>
 		</div>

@@ -44,10 +44,10 @@ if(isset($_REQUEST['assign'])){
 			<div class="page-content">
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
-						<div class="card border-top border-0 border-4 border-primary">
+						<div class="card border-top border-0 border-4 border-dark">
 							<div class="card-body p-5">
 								<div class="card-title d-flex align-items-center">
-									<h5 class="mb-0 text-primary">Add New Task</h5>
+									<h5 class="mb-0 text-dark">Add New Task</h5>
 								</div>
 								<hr>
 
@@ -108,7 +108,7 @@ if(isset($_REQUEST['assign'])){
 									</div>
 								
 									<div class="col-12">
-										<button type="submit" name="assign" class="btn btn-primary px-5">Assign</button>
+										<button type="submit" name="assign" class="btn btn-outline-dark px-5">Assign</button>
 										<a href="tasks.php" class="btn btn-secondary px-5">Back</a>
 									</div>
 								</form>

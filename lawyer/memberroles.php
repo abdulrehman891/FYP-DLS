@@ -66,8 +66,8 @@ if(isset($_REQUEST['update'])){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0 text-uppercase">Member Roles</h6>
       <a href="" class="d-none d-sm-inline-block shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <button class="btn btn-sm btn-primary">
-          <i class="fas fa-plus"></i>
+        <button class="btn btn-sm btn-dark">
+          <i class="fas fa-plus fa-fw"></i>
           Add Role
         </button>
       </a>
@@ -225,7 +225,7 @@ if(isset($_REQUEST['update'])){
               <textarea class="form-control" id="roleDescription" name="roleDescription" placeholder="Address..." rows="3"></textarea>
             </div>
             <div class="modal-footer">
-            <button type="submit" name="add" class="btn btn-primary">Add</button>
+            <button type="submit" name="add" class="btn btn-outline-dark">Add</button>
               <input type="submit" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
             </div>
 
