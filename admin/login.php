@@ -24,9 +24,12 @@ if(isset($_REQUEST['signin'])){
 
 		$sql = "SELECT * FROM admin WHERE admin_email = '$email' AND admin_password = '$password'";
 		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		$adminId = $row['admin_id'];
 
 		// Login Successful
 		if(mysqli_num_rows($result) == 1){
+			$_SESSION['admin_id'] = $adminId;
 			$_SESSION['admin_email'] = $email;
 			header('Location:index.php');
 		}

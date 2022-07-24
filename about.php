@@ -85,16 +85,16 @@ include('includes/header.php'); ?>
       <div class="row">
         <div class="col-lg-4 px-5">
           <h1 class="text-white mt-2 display-4">
-            <strong class="text-third">50 Years</strong> of Experience in Various Cases</h1>
+            <strong class="text-third">3 Months</strong> of Experience in Various Cases</h1>
         </div>
 
 
         <div class="col-lg-4 px-5">
           <span class="display-1 fw-bolder">
-            <span class="text-third counter">90</span><span class="text-white">+</span>
+            <span class="text-third counter">3.5<span class="text-third">K</span></span><span class="text-white">+</span>
           </span>
-          <strong class="d-block text-white fs-5">Awards</strong>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          <strong class="d-block text-white fs-5">Total Cases</strong>
+          <p>These stunning number claims that people believe us.</p>
         </div>
 
         <div class="col-lg-4 px-5">
@@ -102,7 +102,7 @@ include('includes/header.php'); ?>
             <span class="text-third counter">3</span><span class="text-third">K</span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Cases Win</strong>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          <p>Your Success is our happiness, You win your legal matters.</p>
         </div>
 
 
@@ -115,18 +115,21 @@ include('includes/header.php'); ?>
 
         <div class="col-lg-4 px-5">
           <span class="display-1 fw-bolder">
-            <span class="text-third counter">2</span><span class="text-third">K</span><span class="text-white">+</span>
+            <span class="text-third counter"><?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM client"));
+              ?></span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Clients</strong>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          <p>Here is the total number of clients who are associated with our system .</p>
         </div>
 
         <div class="col-lg-4 px-5">
           <span class="display-1 fw-bolder">
-            <span class="text-third counter">200</span><span class="text-white">+</span>
+            <span class="text-third counter"><?php 
+                echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lawyer"));
+              ?></span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Lawyers</strong>
-          <p>Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          <p>We hereby have all the experts lawyer with exepriced staff.</p>
         </div>
 
 

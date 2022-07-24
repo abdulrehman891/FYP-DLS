@@ -60,7 +60,7 @@ if(isset($_REQUEST['update'])){
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex flex-column align-items-center text-center">
-											<img src="assets/images/users/<?php echo $row['user_image'] ?>" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+											<img src="assets/images/users/<?php echo $row['user_image'] ?>" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="110">
 											<div class="mt-3">
 												<h4><?php echo $row['user_name'] ?></h4>
 												<p class="text-secondary mb-1"><?php echo $row['user_address'] ?></p>
@@ -121,13 +121,13 @@ if(isset($_REQUEST['update'])){
 													<h6 class="mb-0">Upload Image</h6>
 												</div>
 												<div class="col-sm-9 text-secondary">
-													<input type="file" class="form-control" name="userImage" />
+													<input type="file" class="form-control" value="hello" name="userImage" />
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-sm-3"></div>
 												<div class="col-sm-9 text-secondary">
-													<input type="submit" name="update" class="btn btn-primary px-4" value="Update" />
+													<input type="submit" name="update" class="btn btn-dark px-4" value="Update" />
 												</div>
 											</div>
 										</form>

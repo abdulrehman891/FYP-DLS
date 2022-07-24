@@ -1,18 +1,31 @@
     <!-- Footer Start -->
 
+    <!-- Bring to Top Start -->
+    <button onclick="topFunction()" id="gotoTopBtn" class="rounded-pill" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+    <!-- Bring to Top End -->
+
+
     <footer class="container-fluid bg-first p-5">
       <div class="row px-5">
         <div class="col-lg-3">
           <div class="widget">
             <h3 class="text-fourth">Pages</h3>
             <ul class="list-unstyled float-left links">
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">About us</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Home</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Practice Area</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Services</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Attorneys</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Terms</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Privacy</a></li>
+              <li class="mb-2"><a href="index.php" class="text-third fade-up-sm">Home</a></li>
+              <li class="mb-2"><a href="practices.php" class="text-third fade-up-sm">Practice Area</a></li>
+              <li class="mb-2"><a href="services.php" class="text-third fade-up-sm">Services</a></li>
+              <li class="mb-2"><a href="lawyers.php" class="text-third fade-up-sm">Lawyers</a></li>
+            </ul>
+          </div> 
+        </div> 
+
+        <div class="col-lg-3">
+          <div class="widget">
+            <h3 class="text-fourth">Company</h3>
+              <ul class="list-unstyled float-left links">
+                <li class="mb-2"><a href="about.php" class="text-third fade-up-sm">About us</a></li>
+                <li class="mb-2"><a href="terms.php" class="text-third fade-up-sm">Terms</a></li>
+                <li class="mb-2"><a href="privacy.php" class="text-third fade-up-sm">Privacy</a></li>
             </ul>
           </div> 
         </div> 
@@ -21,25 +34,14 @@
           <div class="widget">
             <h3 class="text-fourth">Practice Area</h3>
             <ul class="list-unstyled float-left links">
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Banking Law</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Commercial Law</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Corporate Law</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Family Law</a></li>
-              <li class="mb-2"><a href="#" class="text-third fade-up-sm">Media Law</a></li>
+              <li class="mb-2"><a href="practices.php" class="text-third fade-up-sm">Banking Law</a></li>
+              <li class="mb-2"><a href="practices.php" class="text-third fade-up-sm">Commercial Law</a></li>
+              <li class="mb-2"><a href="practices.php" class="text-third fade-up-sm">Corporate Law</a></li>
+              <li class="mb-2"><a href="practices.php" class="text-third fade-up-sm">Family Law</a></li>
             </ul>
           </div> 
         </div> 
-        <div class="col-lg-3">
-          <div class="widget">
-            <h3 class="text-fourth">Services</h3>
-              <ul class="list-unstyled float-left links">
-                <li class="mb-2"><a href="#" class="text-third fade-up-sm">Labor Law</a></li>
-                <li class="mb-2"><a href="#" class="text-third fade-up-sm">Employment</a></li>
-                <li class="mb-2"><a href="#" class="text-third fade-up-sm">Property Law</a></li>
-                <li class="mb-2"><a href="#" class="text-third fade-up-sm">Prosecution</a></li>
-            </ul>
-          </div> 
-        </div> 
+
         <div class="col-lg-3">
           <div class="widget">
             <h3 class="text-fourth">Contact</h3>

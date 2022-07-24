@@ -43,6 +43,8 @@ if(!$_SESSION['user_email']){
 	<link rel="stylesheet" href="assets/css/dark-theme.css" />
 	<link rel="stylesheet" href="assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="assets/css/header-colors.css" />
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="assets/css/custom.css">
 	<title>Lawyer - DLS</title>
 </head>
 

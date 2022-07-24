@@ -10,7 +10,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	<div class="switcher-wrapper">
+	<!-- <div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -130,28 +130,28 @@
                 "buttons": [ 
 				{  
                         extend: 'copy',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-copy"></i> Copy'  
                     }, 
                    
                     {  
                         extend: 'excel',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-excel"></i> Excel'  
                     },  
                     {  
                         extend: 'pdf',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-pdf"></i> Pdf'  
                     },  
                     {  
                         extend: 'csv',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-csv"></i> CSV'  
                     },  
                     {  
                         extend: 'print',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-print"></i> Print'  
                     }  
                 ]  

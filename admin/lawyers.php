@@ -99,7 +99,7 @@ if(isset($_REQUEST['delete'])){
                 <th>Specialization</th>
                 <th>Experience</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th class="d-print-none">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +124,7 @@ if(isset($_REQUEST['delete'])){
                     else echo "Blocked";
                     ?></td>
 
-                    <td>
+                    <td class="d-print-none">
                         <div class="dropdown">
                             <a
                             class="text-first"
