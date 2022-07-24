@@ -7,6 +7,9 @@ if(!isset($_SESSION)){
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +27,7 @@ if(!isset($_SESSION)){
     <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.min.css">
 
     <title><?php echo TITLE; ?></title>
+    <link rel="icon" type="image/x-icon" href="assets/logo/logo1.png">
 </head>
 <body>
 
@@ -31,7 +35,7 @@ if(!isset($_SESSION)){
     <!-- Navbar Start -->
     <nav class="navbar custom-nav navbar-expand-md fixed-top navbar-dark px-5 py-3">
         <div class="container-fluid">
-            <a class="navbar-brand ms-5 text-uppercase" href="index.php">Digital Lawyer Street</a>          
+            <a class="navbar-brand ms-5 " href="index.php"><img width="120px" src="assets/logo/logo2.png" alt="" srcset=""></a>          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

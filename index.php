@@ -6,11 +6,11 @@ include('includes/header.php');
 
 
     <!-- Banner Start -->
-    <div class="banner-image w-100 vh-100 d-flex">
+    <div class="banner-image w-100 vh-100 d-flex bg-secondary">
 
         <div class="img-overly"></div>
         
-        <div class="banner-content" style="width: 300px; margin-top:150px; margin-left: 250px">
+        <div class="banner-content" style="width: 300px; margin-top:120px; margin-left: 100px">
             <h1 class="text-white">We <span class="text-third">Fight </span> For Your <span class="text-third">Right</span> </h1>
             <p class="text-white shadow-sm my-3" style="text-align:justify">DLS Experts adhere to high standards of professionalism and conduct. Each of our Expert is a lawyer verified by Bar Council and expert in his/her respective field. That Helps Deal With diffferent Matters</p>
 
