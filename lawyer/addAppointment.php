@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Add Appointment');
+include('includes/header.php'); ?>
 
 <?php
 // Save button Clicked
@@ -59,8 +61,10 @@ if(isset($_REQUEST['save'])){
 									
 									<div class="col-md-6" id="clientName">
 										<label for="clientName" class="form-label">Client Name <span class="text-danger">*</span></label>
+										
 										<select name="clientName" id="clientName" class="form-select">
-											<option value="" selected>Select Client</option>
+											 
+										<option value="" selected>Select Client</option>
 
 											<?php
 											$lawyerId = $_SESSION['lawyer_id'];
@@ -69,21 +73,24 @@ if(isset($_REQUEST['save'])){
 											while($row = mysqli_fetch_assoc($result)){
 											?>
 
-											<option value="<?php echo $row['client_name'] ?>"><?php echo $row['client_name'] ?></option>
+											<option><?php echo $row['client_name'] ?></option>
 											
 
 											<?php } ?>
 
 
 										</select>
+
+										
+
 									</div>
 									<div class="col-md-6">
 										<label for="clientEmail" class="form-label">Client Email <span class="text-danger"> *</span></label>
-										<input type="email" class="form-control" name="clientEmail" id="clientEmail">
+										<input type="email" class="form-control" name="clientEmail" id="clientEmail" readonly>
 									</div>
 									<div class="col-md-6">
 										<label for="clientMobileNo" class="form-label">Mobile No <span class="text-danger">*</span></label>
-										<input type="text" class="form-control" name="clientMobileNo" id="clientMobileNo">
+										<input type="text" class="form-control" name="clientMobileNo" id="clientMobileNo" readonly>
 									</div>
 									<div class="col-md-3">
 										<label for="appointmentDate" class="form-label">Date <span class="text-danger">*</span></label>
@@ -118,6 +125,33 @@ if(isset($_REQUEST['save'])){
 <?php include('includes/footer.php'); ?>
 
 <script>
+
+
+	// AJAX for select client Details
+	$(document).ready(function(){
+    $("select#clientName").change(function(){
+        var clientName = $(this).children("option:selected").val();
+		console.log(clientName);
+
+		$.ajax({
+			type: "POST",
+			url: "ajax/appointment.php",
+			data: {clientName : clientName},
+			success: function (response) {
+				var data = JSON.parse(response);
+				var clientEmail = data['client_email'];
+				var clientMobileNo = data['client_mobile'];
+				$("#clientEmail").val(clientEmail);
+				$("#clientMobileNo").val(clientMobileNo);
+			}
+		});
+    });
+});
+
+
+
+
+
 	// New Client and Existing Client 
 	// $(function () {
 	// 	$('#existingClient').attr("class", "d-none");

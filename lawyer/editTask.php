@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php
+define('TITLE', 'Edit Task');
+include('includes/header.php'); ?>
 
 <?php 
 // Update Button Clicked

@@ -134,6 +134,8 @@
 	</script>
 
 
+<!-- Calendar Start -->
+
 		  <script>
 			document.addEventListener('DOMContentLoaded', function() {
     var initialLocaleCode = 'en';
@@ -176,6 +178,13 @@
 
   });
 		  </script>
+
+
+
+<!-- Calendar Start -->
+
+
+
 
 
 	<script>

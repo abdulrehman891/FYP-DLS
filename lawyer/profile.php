@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Profile');
+include('includes/header.php'); ?>
 
 
 <?php
@@ -151,7 +153,7 @@ $row = mysqli_fetch_assoc($result);
                                                 <input type="text" class="form-control" value="<?php echo $row['lawyer_instagram'] ?>" name="lawyerInstagram" id="lawyerInstagram" placeholder="Instagram">
                                                 <label for="floatingInput">Instagram</label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button type="submit" class="btn btn-grey" name="update">Update</button>
                                         </form>
                                     </div>
                                 </div>
@@ -253,7 +255,7 @@ $row = mysqli_fetch_assoc($result);
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <button type="submit" name="save" class="btn btn-primary px-4" >Save Changes </button>
+                                            <button type="submit" name="save" class="btn btn-dark px-4" >Save Changes </button>
                                         </div>
                                     </div>
 

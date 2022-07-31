@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Tasks');
+include('includes/header.php'); ?>
 
 <?php 
 // DELETE Button Clicked
@@ -147,6 +149,28 @@ if(isset($_REQUEST['complete'])){
                             Complete
                           </button>
                         </form>
+                      </li>
+
+
+                      <li class="<?php if($row['task_status'] == 1 || $row['task_status'] == -1) echo 'd-none' ?>">
+                        <a class="dropdown-item" href="https://wa.me/3020006566?text=*Task*%20:%20<?php echo $row['task_subject']?>%0A*Description*%20:%20<?php echo $row['task_description']?>%0A*Client%20Name*%20:%20<?php echo $row['client_name']?>%0A*Case%20Number*%20:%20484834%0A*Deadline*%20:%<?php echo $row['task_deadline']?>">
+                          <i class="fas fa-bell"></i>
+                          Notify
+                        </a>
+                      </li>
+                   
+                      <li class="<?php if($row['task_status'] == -1 || $row['task_status'] == 0) echo 'd-none' ?>">
+                        <a class="dropdown-item" href="https://wa.me/3020006566?text=*Task Stauts*:Completed%0A*Task*%20:%20<?php echo $row['task_subject']?>%0A*Description*%20:%20<?php echo $row['task_description']?>%0A*Client%20Name*%20:%20<?php echo $row['client_name']?>%0A*Case%20Number*%20:%20484834%0A*Deadline*%20:%<?php echo $row['task_deadline']?>">
+                          <i class="fas fa-bell"></i>
+                          Notify
+                        </a>
+                      </li>
+
+                      <li class="<?php if($row['task_status'] == 0 || $row['task_status'] == 1) echo 'd-none' ?>">
+                        <a class="dropdown-item" href="https://wa.me/3020006566?text=*Task Stauts* : Not Completed - Deadline Passed%0A*Task*%20:%20<?php echo $row['task_subject']?>%0A*Description*%20:%20<?php echo $row['task_description']?>%0A*Client%20Name*%20:%20<?php echo $row['client_name']?>%0A*Case%20Number*%20:%20484834%0A*Deadline*%20:%<?php echo $row['task_deadline']?>">
+                          <i class="fas fa-bell"></i>
+                          Notify
+                        </a>
                       </li>
 
 

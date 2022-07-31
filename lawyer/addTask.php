@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Add Task');
+include('includes/header.php'); ?>
 
 <?php 
 // Assign Button Clicked
@@ -92,14 +94,37 @@ if(isset($_REQUEST['assign'])){
                                         <label for="taskAssignTo" class="form-label">Assign To <span class="text-danger">*</span></label>
                                         <select class="form-select" name="taskAssignTo" id="taskAssignTo" aria-label="Default select example">
                                             <option value="" selected></option>
-                                            <option value="arslan">Arslan Naeem</option>
+
+											<?php
+											$lawyerId = $_SESSION['lawyer_id'];
+											$sql = "SELECT * FROM member WHERE lawyer_id = '$lawyerId' AND member_status = 1"; 
+											$result = mysqli_query($conn, $sql);
+											while($row = mysqli_fetch_assoc($result)){
+											
+											 ?>
+
+                                            <option value="<?php echo $row['member_name'] ?>"><?php echo $row['member_name'] ?></option>
+
+											<?php } ?>
+
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="clientName" class="form-label">Client Name <span class="text-danger">*</span></label>
                                         <select class="form-select" name="clientName" id="clientName" aria-label="Default select example">
                                             <option value="" selected></option>
-                                            <option value="Rana Kamran">Rana Kamran</option>
+
+											<?php 
+											$lawyerId = $_SESSION['lawyer_id'];
+											$sql = "SELECT * FROM client WHERE lawyer_id = '$lawyerId' AND is_assign = 1"; 
+											$result = mysqli_query($conn, $sql);
+											while($row = mysqli_fetch_assoc($result)){
+											
+											 ?>
+
+                                            <option value="<?php echo $row['client_name'] ?>"><?php echo $row['client_name'] ?></option>
+
+											<?php } ?>
                                         </select>
                                     </div>
 									<div class="col-12">

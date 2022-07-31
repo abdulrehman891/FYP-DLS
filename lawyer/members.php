@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Member');
+include('includes/header.php'); ?>
 
 <?php 
 // DELETE Button Clicked

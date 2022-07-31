@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Add Member');
+include('includes/header.php'); ?>
 
 
 <?php 

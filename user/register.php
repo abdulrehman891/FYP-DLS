@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'User Registration');
 include("includes/connection.php");
 
 ?>
@@ -91,7 +92,8 @@ if (isset($_POST['submit'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<!-- <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" /> -->
+	<link rel="icon" href="../assets/logo/logo1.png" type="image/png" />
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -105,7 +107,7 @@ if (isset($_POST['submit'])) {
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
-	<title>User Registration</title>
+	<title><?php echo TITLE ?></title>
 </head>
 
 <body class="bg-login">

@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'Admin Login');
 include("includes/connection.php");
 
 
@@ -63,7 +64,8 @@ if(isset($_REQUEST['signin'])){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<!-- <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" /> -->
+	<link rel="icon" href="../assets/logo/logo1.png" type="image/png" />
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -77,7 +79,7 @@ if(isset($_REQUEST['signin'])){
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
-	<title>Admin login</title>
+	<title><?php echo TITLE ?></title>
 </head>
 
 <?php
@@ -163,8 +165,8 @@ if(isset($_POST['sub'])){
 													<label class="form-check-label" for="flexSwitchCheckChecked" >Remember Me</label>
 												</div>
 											</div> -->
-											<div class="col-md-12 text-end">	<a href="authentication-forgot-password.html" class="text-secondary">Forgot Password ?</a>
-											</div>
+											<!-- <div class="col-md-12 text-end">	<a href="authentication-forgot-password.html" class="text-secondary">Forgot Password ?</a>
+											</div> -->
 											<div class="col-12">
 												<div class="d-grid">
 													<button type="submit" name="signin" class="btn btn-dark"><i class="bx bxs-lock-open"></i>Sign in

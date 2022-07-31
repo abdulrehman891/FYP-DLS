@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Cases');
+include('includes/header.php'); ?>
 
 <!--start page wrapper -->
 

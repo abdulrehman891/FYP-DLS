@@ -1,6 +1,7 @@
 
 <!-- Header Start -->
 <?php
+define('TITLE', 'My Lawyers');
 include('includes/header.php');?>
 
 <!-- Header End -->
@@ -47,7 +48,24 @@ include('includes/header.php');?>
 									
 										<form action="../lawyerProfile.php" method="get" class="d-flex flex-row justify-content-between">
 
-										<a href="https://wa.me/3020006566" class="btn btn-outline-dark">Message</a>
+										<?php 
+									// Rating
+									$lawyerID = $row['lawyer_id'];
+									$sql1 = "SELECT * FROM lawyer WHERE lawyer_id = '$lawyerID' ";
+									$result1 = mysqli_query($conn, $sql1);
+									$row1 = mysqli_fetch_assoc($result1);
+									$avgRate = $row1['average_rate'];
+									
+									?>
+
+
+										<div>
+											<i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3 || $avgRate == 2 || $avgRate == 1) echo 'checked'?>"></i>
+											<i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3 || $avgRate == 2) echo 'checked'?>"></i>
+											<i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3) echo 'checked'?>"></i>
+											<i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4) echo 'checked'?>"></i>
+											<i class="fa fa-star <?php if($avgRate == 5) echo 'checked'?>"></i>
+										</div>
 
 											<input type="hidden" name="userId" value="<?php echo $_SESSION['user_id'] ?>">
 											<input type="hidden" name="lawyerId" value="<?php echo $row1['lawyer_id'] ?>">

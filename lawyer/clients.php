@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Clients');
+include('includes/header.php'); ?>
 
 
 <?php

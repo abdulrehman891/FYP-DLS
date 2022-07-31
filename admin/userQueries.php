@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'User Queries');
+include('includes/header.php'); ?>
 
 <?php 
 // DELETE Button Clicked

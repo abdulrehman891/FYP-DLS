@@ -4,7 +4,8 @@
 					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 				</div> -->
 				<div>
-					<h4 class="logo-text text-dark">DLS</h4>
+					<!-- <h4 class="logo-text text-dark">DLS</h4> -->
+					<img src="../assets/logo/logo_250x150.png" width="100px" alt="" srcset="">
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-dark'></i>
 				</div>

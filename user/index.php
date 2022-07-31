@@ -1,6 +1,7 @@
 
 <!-- Header Start -->
 <?php
+define('TITLE', 'User Profile');
 include('includes/header.php');?>
 
 <!-- Header End -->

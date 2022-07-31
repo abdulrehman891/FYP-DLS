@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'Lawyer Registration');
 include("includes/connection.php");
 
 ?>
@@ -139,7 +140,8 @@ if (isset($_POST['submit'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<!-- <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" /> -->
+	<link rel="icon" href="../assets/logo/logo1.png" type="image/png" />
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -153,7 +155,7 @@ if (isset($_POST['submit'])) {
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
-	<title>Lawyer Registration</title>
+	<title><?php echo TITLE ?></title>
 </head>
 
 <body class="bg-login">
@@ -252,7 +254,7 @@ if (isset($_POST['submit'])) {
                                                 <label for="lawyerPassword" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" class="form-control border-end-0"
-                                                        name="lawyerPassword" id="lawyerPassword" value="12345678"
+                                                        name="lawyerPassword" id="lawyerPassword"
                                                         placeholder="Enter Password"> <a href="javascript:;"
                                                         class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide'></i></a>

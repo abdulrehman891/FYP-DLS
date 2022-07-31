@@ -76,6 +76,26 @@
 
 
 
+    <?php 
+    // Calculating Avg Ratting
+    $sql = "SELECT * FROM lawyer";
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)){
+      $lawyerId = $row['lawyer_id'];
+      $rateValue = $row['rate_value'];
+      $rateTime = $row['rate_time'];
+      if($rateTime == 0){ $rateTime =1; }
+  
+      $averageRate = round($rateValue / $rateTime);
+  
+      $sql1 = "UPDATE lawyer SET average_rate = '$averageRate' WHERE lawyer_id = '$lawyerId'";
+      mysqli_query($conn, $sql1);
+    }
+
+    ?>
+
+
+
 
     <!-- Bootstrap with bundle JS -->
     <script src="assets/js/bootstrap.min.js"></script>

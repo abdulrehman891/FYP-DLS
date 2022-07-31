@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Add Case');
+include('includes/header.php'); ?>
 
 
 

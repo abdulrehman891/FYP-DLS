@@ -196,7 +196,7 @@ include('includes/header.php');
                   </div>
                   <h3 class="testimonial-title">
                       <a href="https://wa.me/3020006566"><?php echo $row1['user_name'] ?></a>
-                      <small>- <?php echo $row1['user_mobile'] ?></small>
+                     
                   </h3>
               </div>
 

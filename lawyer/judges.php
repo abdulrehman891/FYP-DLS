@@ -1,5 +1,7 @@
 
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Judges');
+include('includes/header.php'); ?>
 
 
 <?php

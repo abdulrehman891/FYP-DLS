@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'User Login');
 include("includes/connection.php");
 
 if(!isset($_SESSION)){
@@ -77,7 +78,8 @@ if(isset($_REQUEST['signin'])){
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<!-- <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" /> -->
+	<link rel="icon" href="../assets/logo/logo1.png" type="image/png" />
 	<!--plugins-->
 	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
 	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
@@ -91,7 +93,7 @@ if(isset($_REQUEST['signin'])){
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
 	<link href="assets/css/app.css" rel="stylesheet">
 	<link href="assets/css/icons.css" rel="stylesheet">
-	<title>User login</title>
+	<title><?php echo TITLE; ?></title>
 </head>
 
 <?php
@@ -168,7 +170,7 @@ if(isset($_POST['sub'])){
 											<div class="col-12">
 												<label for="userPassword" class="form-label">Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" name="userPassword" id="userPassword" value="12345678"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" class="form-control border-end-0" name="userPassword" id="userPassword"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
 											<!-- <div class="col-md-6">
@@ -177,7 +179,7 @@ if(isset($_POST['sub'])){
 													<label class="form-check-label" for="flexSwitchCheckChecked" >Remember Me</label>
 												</div>
 											</div> -->
-											<div class="col-md-12 text-end">	<a href="authentication-forgot-password.html" class="text-secondary">Forgot Password ?</a>
+											<div class="col-md-12 text-end">	<a href="forgetPassword.php" class="text-secondary">Forgot Password ?</a>
 											</div>
 											<div class="col-12">
 												<div class="d-grid">

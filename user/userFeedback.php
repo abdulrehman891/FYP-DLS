@@ -1,6 +1,7 @@
 
 <!-- Header Start -->
 <?php
+define('TITLE', 'Feedback');
 include('includes/header.php');?>
 
 <!-- Header End -->

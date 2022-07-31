@@ -67,13 +67,32 @@ if(!isset($_SESSION)){
                         <p class="card-text"><?php echo $row['lawyer_description'] ?></p>
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-between">
+
+
+
+                    <?php 
+                    // Rating
+                    $lawyerID = $row['lawyer_id'];
+                    $sql1 = "SELECT * FROM lawyer WHERE lawyer_id = '$lawyerID' ";
+                    $result1 = mysqli_query($conn, $sql1);
+                    $row1 = mysqli_fetch_assoc($result1);
+                    $avgRate = $row['average_rate'];
+                    
+                    ?>
+
+
                         <div>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star "></i>
-                            <i class="fa fa-star "></i>
+                            <i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3 || $avgRate == 2 || $avgRate == 1) echo 'checked'?>"></i>
+                            <i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3 || $avgRate == 2) echo 'checked'?>"></i>
+                            <i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4 || $avgRate == 3) echo 'checked'?>"></i>
+                            <i class="fa fa-star <?php if($avgRate == 5 || $avgRate == 4) echo 'checked'?>"></i>
+                            <i class="fa fa-star <?php if($avgRate == 5) echo 'checked'?>"></i>
                         </div>
+
+                    
+
+
+
                         <form action="lawyerProfile.php" method="get">
                             <input type="hidden" name="userId" value="<?php if(isset($_SESSION['user_id'])) echo $_SESSION['user_id'] ?>">
                             <input type="hidden" name="lawyerId" value="<?php echo $row['lawyer_id'] ?>">
