@@ -152,39 +152,42 @@ if (isset($_POST['submit'])) {
                                         <hr />
                                     </div>
                                     <div class="form-body">
-                                        <form class="row g-3" method="POST" enctype="multipart/form-data">
+                                        <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                                             <div class="col-sm-6">
                                                 <label for="userName" class="form-label">Full Name <span class="text-danger">*</span>  </label>
-                                                <input type="text" name="userName" class="form-control" id="userName">
+                                                <input type="text" name="userName" class="form-control" id="userName" required pattern="[a-zA-Z\d\s]{3,}">
                                             </div>
                                             <div class="col-6">
                                                 <label for="userMobile" class="form-label">Moible No. <span class="text-danger">*</span></label>
-                                                <input type="text" name="userMobile" class="form-control" id="userMobile"
-                                                    placeholder="+923001234567">
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="inputGroupPrepend">+92</span>
+                                                    <input type="text" name="userMobile" class="form-control" id="userMobile" aria-describedby="inputGroupPrepend" required onkeypress="isInputNumber(event)" pattern="[3][0-9]{9}">
+                                                    <div class="invalid-feedback">Number must be as 3001234567</div>
+                                                </div>
                                             </div>
                                             <div class="col-6">
                                                 <label for="userEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" name="userEmail" id="userEmail"
-                                                    placeholder="example@user.com">
+                                                    placeholder="example@user.com" required>
                                             </div>
                                             <div class="col-6">
                                                 <label for="userPassword" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" class="form-control border-end-0"
-                                                        name="userPassword" id="userPassword"                              placeholder="Enter Password"> <a href="javascript:;"
-                                                        class="input-group-text bg-transparent"><i
+                                                        name="userPassword" id="userPassword"                              placeholder="Enter Password" required pattern="[a-zA-Z\d]{6,}"> <a href="javascript:;"
+                                                        class="input-group-text bg-transparent" ><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <label for="userAddress" class="form-label">Address <span class="text-danger">*</span></label>
                                                 <textarea class="form-control" name="userAddress" id="userAddress"
-                                                   cols="30" rows="2"></textarea>
+                                                   cols="30" rows="2" required></textarea>
                                             </div>
                                             <div class="col-12">
                                                 <label for="userDescription" class="form-label">Description <span class="text-danger">*</span></label>
                                                 <textarea class="form-control" name="userDescription" id="userDescription"
-                                                    placeholder="Write few words about your case..." cols="150" rows="2"></textarea>
+                                                    placeholder="Write few words about your case..." cols="150" rows="2" required ></textarea>
                                             </div>
                                             
                                             
@@ -215,8 +218,15 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!--end wrapper-->
+
+        <!-- Custom JS -->
+        <script src="assets/js/custom.js"></script>
+
     <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+
+
     <!--plugins-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
@@ -241,8 +251,22 @@ if (isset($_POST['submit'])) {
     </script>
     <!--app JS-->
     <script src="assets/js/app.js"></script>
+
+    <script>
+
+ 
+// function number(event) {
+//     var value = $(this).val();
+//     console.log(value);
+//     if(value == 0){
+//         event.preventDefault();
+//     }
+// }
+
+    </script>
+
+
+
 </body>
-
-
 
 </html>

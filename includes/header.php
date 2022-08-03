@@ -23,13 +23,24 @@ if(!isset($_SESSION)){
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
 
+    <!-- Plugins -->
+    <link rel="stylesheet" href="assets/plugins/loader/loader.css">
+
     <!-- Testimonial CSS Plugin -->
     <link rel="stylesheet" href="assets/plugins/owl-carousel/owl.carousel.min.css">
 
     <title><?php echo TITLE; ?></title>
     <link rel="icon" type="image/x-icon" href="assets/logo/logo1.png">
+
+
+
+
 </head>
 <body>
+
+<div id="preloader">
+  <div id="loader"></div>
+</div>
 
 
     <!-- Navbar Start -->

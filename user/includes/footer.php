@@ -107,6 +107,10 @@
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="../assets/js/custom.js"></script>
+
 	<!-- Fontawesome v6 js -->
 	<script src="../assets/js/all.min.js"></script>
 	<!--plugins-->

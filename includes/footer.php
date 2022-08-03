@@ -113,6 +113,7 @@
     <!-- Plugins -->
     <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
     <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="assets/plugins/loader/loader.js"></script>
 
     <script>
       $(document).ready(function() {
@@ -120,6 +121,9 @@
 				lengthChange: false,               
 			} );
 
+      $(window).on(load, function () {
+        $('.loader .innner').fadeOut();
+    });
 
 
     });

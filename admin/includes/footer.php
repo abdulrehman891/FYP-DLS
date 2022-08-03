@@ -116,6 +116,7 @@
 	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="assets/plugins/loader/loader.js"></script>
 	<script src="../assets/js/custom.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -164,6 +165,8 @@
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
 </body>
+
+
 
 
 <!-- Mirrored from codervent.com/rocker/demo/vertical/table-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Feb 2022 14:09:33 GMT -->
