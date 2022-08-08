@@ -1,3 +1,3 @@
-    $(window).on(load, function () {
-        $('.loader').fadeOut(1000);
-    });
+$(window).on('load', function(){
+    $('.loader-icon').fadeOut();
+})

@@ -162,15 +162,16 @@ if(isset($_POST['sub'])){
 										<hr/>
 									</div>
 									<div class="form-body">
-										<form class="row g-3" method="POST">
+										<form class="row g-3 needs-validation" method="POST" novalidate>
 											<div class="col-12">
 												<label for="userEmail" class="form-label">Email</label>
-												<input type="email" name="userEmail" class="form-control" class="email" id="userEmail" placeholder="Email Address">
+												<input type="email" name="userEmail" class="form-control" class="email" id="userEmail" placeholder="Email Address" required>
+												<div class="invalid-feedback">Enter Valid Email</div>
 											</div>
 											<div class="col-12">
 												<label for="userPassword" class="form-label">Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" name="userPassword" id="userPassword"  placeholder="Enter Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" class="form-control border-end-0" name="userPassword" id="userPassword"  placeholder="Enter Password" required> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
 											<!-- <div class="col-md-6">

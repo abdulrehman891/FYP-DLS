@@ -4,7 +4,7 @@
 					<img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 				</div> -->
 				<div>
-					<h4 class="logo-text text-dark">DLS</h4>
+				<img src="../assets/logo/logo_250x150.png" width="100px" alt="" srcset="">
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-dark'></i>
 				</div>
@@ -88,11 +88,17 @@
 					
 						<li> <a href="./caseType.php"><i class="bx bx-right-arrow-alt"></i>Case Type</a>
 						</li>
+						<li> <a href="./caseStatus.php"><i class="bx bx-right-arrow-alt"></i>Case Status</a>
+						</li>
 						<li> <a href="./courtType.php"><i class="bx bx-right-arrow-alt"></i>Court Type</a>
 						</li>
 						<li> <a href="./courts.php"><i class="bx bx-right-arrow-alt"></i>Court</a>
 						</li>
 						<li> <a href="./judges.php"><i class="bx bx-right-arrow-alt"></i>Judges</a>
+						</li>
+						<li> <a href="./province.php"><i class="bx bx-right-arrow-alt"></i>Province</a>
+						</li>
+						<li> <a href="./district.php"><i class="bx bx-right-arrow-alt"></i>District</a>
 						</li>
 						
 					</ul>

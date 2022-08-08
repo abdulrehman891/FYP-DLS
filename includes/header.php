@@ -38,9 +38,8 @@ if(!isset($_SESSION)){
 </head>
 <body>
 
-<div id="preloader">
-  <div id="loader"></div>
-</div>
+<!-- loader -->
+<div class="loader-icon"></div>
 
 
     <!-- Navbar Start -->

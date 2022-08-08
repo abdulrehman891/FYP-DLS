@@ -18,10 +18,21 @@
     })
   })()
 
+
+
 // Mobile Number Validation - Only input Number
 function isInputNumber(evt){
     var ch = String.fromCharCode(evt.which);
     if(!(/[0-9]/.test(ch))){
+        evt.preventDefault();
+    }
+}
+
+
+// Mobile Number Validation - Only input Number
+function isInputAlphabet(evt){
+    var ch = String.fromCharCode(evt.which);
+    if(!(/[a-zA-Z\s]/.test(ch))){
         evt.preventDefault();
     }
 }

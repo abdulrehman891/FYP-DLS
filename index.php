@@ -48,7 +48,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Banking and Finance Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The banks are responsible for structuring the financing of international mergers and acquisitionss</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -57,7 +57,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Commercial Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The body of law that applies to the rights, relations, and conduct of persons and business engaged in commerce, merchandising, trade, and sales</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -66,7 +66,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Corporate Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The practice or study of how shareholders, directors, employees, creditors, and other stakeholders such as consumers, the community, and the environment interact with one another.</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -75,7 +75,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Criminal Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">Criminal law is the body of law that relates to crime. It prescribes conduct perceived as threatening, harmful, or otherwise endangering to the property, health, safety, and moral welfare of people inclusive of one's self</span>
                 </div>
               </a>
 

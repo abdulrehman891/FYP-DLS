@@ -30,6 +30,7 @@ if(!$_SESSION['user_email']){
 	<!-- loader-->
 	<link href="assets/css/pace.min.css" rel="stylesheet" />
 	<script src="assets/js/pace.min.js"></script>
+	<link rel="stylesheet" href="assets/plugins/loader/loader.css">
 	<!-- Bootstrap CSS -->
 	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
@@ -50,6 +51,11 @@ if(!$_SESSION['user_email']){
 </head>
 
 <body>
+
+	<!-- Loader Start -->
+	<div class="loader-icon"></div>
+	<!-- Loader End -->
+
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper Start -->

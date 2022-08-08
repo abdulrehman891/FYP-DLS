@@ -85,6 +85,10 @@ if(isset($_REQUEST['update'])){
     <?php
     if(isset($msg)) echo $msg;
     ?>
+    <div class="alert-msg"></div>
+    
+    
+       
 
 
 
@@ -96,11 +100,13 @@ if(isset($_REQUEST['update'])){
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_assoc($result);
       ?>
-      <form class="">
+      <form class="needs-validation" novalidate>
         <div class="row mb-3">
           <label for="caseTypeName" class="col-auto col-form-label">Case Type</label>
           <div class="col-auto">
-            <input type="text"  class="form-control" id="caseTypeName" name="caseTypeName" value="<?php echo $row['case_type_name'] ?>">
+            <input type="text"  class="form-control" id="caseTypeName" name="caseTypeName" value="<?php echo $row['case_type_name'] ?>" pattern="[a-zA-Z\d\.\s]{3,}" required>
+            <div class="invalid-feedback">Looks Bad</div>
+            <div class="valid-feedback">Looks Good</div>
           </div>
           <input type="hidden" name="caseTypeId" value="<?php echo $caseTypeId ?>">
           <div class="col-auto">
@@ -110,7 +116,8 @@ if(isset($_REQUEST['update'])){
       </form>
       
       <?php } ?>
-      
+
+     
       
       <!-- ############# Edit form open when edit clicked - End ########## -->
 
@@ -158,12 +165,12 @@ if(isset($_REQUEST['update'])){
                       aria-labelledby="dropdownMenuButton1"
                     >
 
-
                       <li>
-                        <form action="" method="get" >
-                          <input type="hidden" name="caseTypeId" value="<?php echo $row['case_type_id'] ?>">
+                        <form action="" method="get" class="editForm">
+                          <input type="hidden" name="caseTypeId" id="caseTypeId" value="<?php echo $row['case_type_id'] ?>">
+                          
   
-                            <button name="edit" class="dropdown-item">
+                            <button type="submit" name="edit" class="dropdown-item" data-id ="<?php echo $row['case_type_id'] ?>">
                               <i class="fas fa-pencil-alt"></i>
                               Edit
                             </button>
@@ -172,10 +179,13 @@ if(isset($_REQUEST['update'])){
                       
                       </li>
 
+                     
+
 
                       <li>
                         <form action="" method="get">
                           <input type="hidden" name="caseTypeId" value="<?php echo $row['case_type_id'] ?>">
+                          
 
                           <button type="submit" name="delete" class="dropdown-item">
                             <i class="fas fa-trash"></i>
@@ -212,16 +222,18 @@ if(isset($_REQUEST['update'])){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="get">
+        <form action="" method="get" class="needs-validation" novalidate>
           <div class="row">
             <div class="col-md-12">
               <label for="caseTypeName" class="form-label">Case Type <span class="text-danger">*</span></label>
-              <input type="text" name="caseTypeName" class="form-control" id="caseTypeName">
+              <input type="text" name="caseTypeName" class="form-control" id="caseTypeName" pattern="[a-zA-Z\d\s\.]{3,}" required>
+              <div class="invalid-feedback">looks bad...</div>
+              <div class="valid-feedback">looks good...</div>
             </div>
     
             <div class="modal-footer">
             <button type="submit" name="add" class="btn btn-outline-dark">Add</button>
-              <input type="submit" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
+              <input type="button" value="Close" class="btn btn-secondary" data-bs-dismiss="modal"></button>
             </div>
 
           </div>

@@ -152,8 +152,8 @@ if(isset($_REQUEST['update'])){
 
               <tr>
                 <td scope="row"><?php echo $row['court_id'] ?></td>
-                <td><?php echo $row['court_type_name'] ?></td>
                 <td><?php echo $row['court_name'] ?></td>
+                <td><?php echo $row['court_type_name'] ?></td>
 
                 <td>
                   <div class="dropdown">

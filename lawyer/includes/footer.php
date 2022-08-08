@@ -117,11 +117,14 @@
 	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 
+	<!-- Loader -->
+	<script src="assets/plugins/loader/loader.js"></script>
+
 	<!-- full Calender JS -->
 	<script src="assets/plugins/full-calendar/full-calendar.js"></script>
 
 
-	<script src="../assets/js/custom.js"></script>
+	<script src="assets/js/custom.js"></script>
 	
 
 		

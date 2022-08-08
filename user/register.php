@@ -155,7 +155,7 @@ if (isset($_POST['submit'])) {
                                         <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                                             <div class="col-sm-6">
                                                 <label for="userName" class="form-label">Full Name <span class="text-danger">*</span>  </label>
-                                                <input type="text" name="userName" class="form-control" id="userName" required pattern="[a-zA-Z\d\s]{3,}">
+                                                <input type="text" name="userName" class="form-control" id="userName" required onkeypress="isInputAlphabet(event)" pattern="[a-zA-Z\d\s]{3,}">
                                             </div>
                                             <div class="col-6">
                                                 <label for="userMobile" class="form-label">Moible No. <span class="text-danger">*</span></label>
@@ -187,7 +187,7 @@ if (isset($_POST['submit'])) {
                                             <div class="col-12">
                                                 <label for="userDescription" class="form-label">Description <span class="text-danger">*</span></label>
                                                 <textarea class="form-control" name="userDescription" id="userDescription"
-                                                    placeholder="Write few words about your case..." cols="150" rows="2" required ></textarea>
+                                                    placeholder="Write few words about your case..." cols="150" rows="2"  ></textarea>
                                             </div>
                                             
                                             
