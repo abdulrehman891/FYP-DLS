@@ -176,11 +176,14 @@ if(isset($_REQUEST['notComplete'])){
                                 class="dropdown-menu shadow animated--fade-in"
                                 aria-labelledby="dropdownMenuButton1"
                               >
-                                <li>
-                                  <a class="dropdown-item" href="caseDetails.php">
-                                    <i class="fas fa-eye fa-fw"></i>
-                                    view
-                                  </a>
+                              <li>
+                                  <form action="caseDetails.php" method="get">
+                                    <input type="hidden" name="caseId" value="<?php echo $row['case_id'] ?>">
+                                    <button type="submit" name="view" class="dropdown-item">
+                                      <i class="fas fa-eye"></i>
+                                      View
+                                    </button>
+                                  </form>
                                 </li>
                                
                                 <li>

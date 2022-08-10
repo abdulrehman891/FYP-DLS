@@ -63,14 +63,15 @@ if(isset($_REQUEST['register'])){
 			<div class="page-content">
 			<div class="row">
             <div class="col-xl-9 mx-auto">
-                <div class="card border-top border-0 border-4 border-primary">
+                <div class="card border-top border-0 border-4 border-dark">
                     <div class="card-body p-5">
                         <div class="card-title d-flex align-items-center">
                             <div>
                                 <!-- <i class="bx bxs-user me-1 font-22 text-primary"></i>
                                      -->
                             </div>
-                            <h5 class="mb-0 text-primary">Add New Case</h5>
+                            <i class="fas fa-gavel fa-fw  "></i>
+                            <h5 class="mb-0 text-dark">Add New Case</h5>
                         </div>
                        
                         <?php if(isset($msg)) echo $msg; ?>

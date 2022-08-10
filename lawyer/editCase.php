@@ -61,14 +61,15 @@ if(isset($_REQUEST['update'])){
 			<div class="page-content">
 			<div class="row">
             <div class="col-xl-9 mx-auto">
-                <div class="card border-top border-0 border-4 border-primary">
+                <div class="card border-top border-0 border-4 border-dark">
                     <div class="card-body p-5">
                         <div class="card-title d-flex align-items-center">
                             <div>
                                 <!-- <i class="bx bxs-user me-1 font-22 text-primary"></i>
                                      -->
                             </div>
-                            <h5 class="mb-0 text-primary">Add New Case</h5>
+                            <i class="fas fa-gavel fa-fw "></i>
+                            <h5 class="mb-0 text-dark">Update Case Details</h5>
                         </div>
                        
                         <?php if(isset($msg)) echo $msg; ?>
@@ -92,6 +93,7 @@ if(isset($_REQUEST['update'])){
                                 <label for="clientName" class="form-label">Client Name</label>
                                 <select id="clientName" name="clientName" class="form-select" value="<?php echo $row1['client_name'] ?>" required>
                                     <option value="">Select</option>
+                                    <option value="">My Name is Anas </option>
                                     
 
                                     <?php
@@ -99,7 +101,7 @@ if(isset($_REQUEST['update'])){
                                     $result = mysqli_query($conn, $sql);
                                     while($row = mysqli_fetch_assoc($result)){ ?>
 
-                                    <option value="<?php echo $row['client_name']; ?>"><?php echo $row['client_name']; ?></option>                             
+                                    <option value="<?php echo $row['client_name']; ?>" ><?php echo $row['client_name']; ?></option>                             
                                     
                                 <?php }
                                     ?>

@@ -42,6 +42,9 @@ include('includes/header.php');?>
 										<h5 class="card-title"><?php echo $row1['lawyer_fname'] . " " . $row1['lawyer_lname'] ?></h5>
 										<p class="text-muted"><?php echo $row1['lawyer_spec'] ?></p>
 										<p class="card-text"><?php echo $row1['lawyer_description'] ?> </p>
+
+
+										<a href="caseDetails.php?client_name=<?php echo $row['client_name'] ?>&lawyer_id=<?php echo $row1['lawyer_id'] ?>" class="text-third">Case Details</a>
 									</div>
 
 									<div class="card-footer">
@@ -70,6 +73,7 @@ include('includes/header.php');?>
 											<input type="hidden" name="userId" value="<?php echo $_SESSION['user_id'] ?>">
 											<input type="hidden" name="lawyerId" value="<?php echo $row1['lawyer_id'] ?>">
 											<input type="hidden" name="lawyerEmail" value="<?php echo $row1['lawyer_email'] ?>">
+											
 											<button type="submit" class="btn btn-grey ">Profile</button>
 										</form>
 						
