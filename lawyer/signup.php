@@ -1,5 +1,10 @@
 <?php
 include("includes/connection.php");
+
+
+if (!isset($_SESSION['lawyer_email'])) {
+    header('Location:lawyerLogin.php');
+} 
 include("includes/header.php");
 
 ?>
