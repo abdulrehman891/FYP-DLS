@@ -1,4 +1,5 @@
 <?php
+define('TITLE', 'User Registration');
 include("includes/connection.php");
 
 ?>
@@ -8,22 +9,15 @@ include("includes/connection.php");
 
 if (isset($_POST['submit'])) {
 	$userName=mysqli_real_escape_string($conn,$_POST['userName']);
-	$userCnic=mysqli_real_escape_string($conn,$_POST['userCnic']);
-	$userGender=mysqli_real_escape_string($conn,$_POST['userGender']);
     $userMobile=mysqli_real_escape_string($conn,$_POST['userMobile']);
-    $userReferenceName=mysqli_real_escape_string($conn,$_POST['userReferenceName']);
-    $userReferenceNo=mysqli_real_escape_string($conn,$_POST['userReferenceNo']);
     $userEmail=mysqli_real_escape_string($conn,$_POST['userEmail']);
     $userPassword=mysqli_real_escape_string($conn,$_POST['userPassword']);
-    $userState=mysqli_real_escape_string($conn,$_POST['userState']);
-    $userDistrict=mysqli_real_escape_string($conn,$_POST['userDistrict']);
     $userAddress=mysqli_real_escape_string($conn,$_POST['userAddress']);
     $userDescription=mysqli_real_escape_string($conn,$_POST['userDescription']);
-    $image=$_FILES['image']['name'];
 	
 
     // if any empty field
-	if ($userName == "" || $userCnic == "" || $userGender == "" || $userEmail == "" || $userPassword == "" ||$userMobile == "" || $userAddress == "" || $userDistrict == "" || $userState == "") {
+	if ($userName == "" || $userMobile=="" || $userEmail == "" || $userPassword == "" || $userAddress == "" || $userDescription == "") {
 
         $msg = '<div class="col-12">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -56,11 +50,11 @@ if (isset($_POST['submit'])) {
 
     // Insert Data
 	else{
-        move_uploaded_file($_FILES['image']['tmp_name'], "./assets/images/users/$image");
-    $sql = "INSERT INTO `user`(`user_name`, `user_cnic`, `user_gender`, `user_mobile`, `user_r_name`, `user_r_number`, `user_email`, `user_password`, `user_state`, `user_district`, `user_address`, `user_description`,`user_image`) VALUES ('$userName','$userCnic','$userGender','$userMobile','$userReferenceName','$userReferenceNo','$userEmail','$userPassword','$userState','$userDistrict','$userAddress','$userDescription','$image')";
+
+    $sql = "INSERT INTO user (user_name, user_mobile, user_email, user_password,  user_address, user_description ) VALUES ('$userName' , '$userMobile' , '$userEmail', '$userPassword', '$userAddress', '$userDescription')";
 
 	$result = mysqli_query($conn, $sql);
-    
+
 	if($result){
         $msg = '<div class="col-12">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -93,27 +87,27 @@ if (isset($_POST['submit'])) {
 
 
 <!-- Mirrored from codervent.com/rocker/demo/vertical/authentication-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Feb 2022 14:09:35 GMT -->
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
-    <!--plugins-->
-    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
-    <!-- loader-->
-    <link href="assets/css/pace.min.css" rel="stylesheet" />
-    <script src="assets/js/pace.min.js"></script>
-    <!-- Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link href="assets/css/app.css" rel="stylesheet">
-    <link href="assets/css/icons.css" rel="stylesheet">
-    <title>User Registration</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<!-- <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" /> -->
+	<link rel="icon" href="../assets/logo/logo1.png" type="image/png" />
+	<!--plugins-->
+	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<!-- loader-->
+	<link href="assets/css/pace.min.css" rel="stylesheet" />
+	<script src="assets/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/bootstrap-extended.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet">
+	<link href="assets/css/app.css" rel="stylesheet">
+	<link href="assets/css/icons.css" rel="stylesheet">
+	<title><?php echo TITLE ?></title>
 </head>
 
 <body class="bg-login">
@@ -131,8 +125,7 @@ if (isset($_POST['submit'])) {
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
                                         <h3 class="">New User Registration</h3>
-                                        <p>Already have an account? <a href="login.php" class="text-secondary">Login
-                                                here</a>
+                                        <p>Already have an account? <a href="login.php" class="text-secondary">Login here</a>
                                         </p>
                                     </div>
 
@@ -154,111 +147,51 @@ if (isset($_POST['submit'])) {
                                         </a> <a href="javascript:;" class="btn btn-facebook"><i
                                                 class="bx bxl-facebook"></i>Sign Up with Facebook</a>
                                     </div> -->
-
+                                    
                                     <div class="login-separater text-center mb-4"> <span>SIGN UP WITH EMAIL</span>
                                         <hr />
                                     </div>
                                     <div class="form-body">
-                                        <form class="row g-3" method="POST" enctype="multipart/form-data">
-                                            <div class="col-md-4">
-                                                <label for="userName" class="form-label">Full Name <span
-                                                        class="text-danger">*</span> </label>
-                                                <input type="text" name="userName" class="form-control" id="userName">
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="userCnic" class="form-label">Cnic <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="userCnic" id="userCnic">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="userGender" class="form-label">Gender <span
-                                                        class="text-danger">*</span></label>
-                                                <select id="userGender" name="userGender" class="form-select">
-                                                    <option selected>Choose...</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="userMobile" class="form-label">Moible No. <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" name="userMobile" class="form-control"
-                                                    id="userMobile" placeholder="+923001234567">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="userReferenceName" class="form-label">Reference Name</label>
-                                                <input type="text" class="form-control" name="userReferenceName"
-                                                    id="userReferenceName">
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label for="userReferenceNo" class="form-label">Reference No</label>
-                                                <input type="text" class="form-control" name="userReferenceNo"
-                                                    id="userReferenceNo">
+                                        <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                                            <div class="col-sm-6">
+                                                <label for="userName" class="form-label">Full Name <span class="text-danger">*</span>  </label>
+                                                <input type="text" name="userName" class="form-control" id="userName" required onkeypress="isInputAlphabet(event)" pattern="[a-zA-Z\d\s]{3,}">
                                             </div>
                                             <div class="col-6">
-                                                <label for="userEmail" class="form-label">Email Address <span
-                                                        class="text-danger">*</span></label>
+                                                <label for="userMobile" class="form-label">Moible No. <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="inputGroupPrepend">+92</span>
+                                                    <input type="text" name="userMobile" class="form-control" id="userMobile" aria-describedby="inputGroupPrepend" required onkeypress="isInputNumber(event)" pattern="[3][0-9]{9}">
+                                                    <div class="invalid-feedback">Number must be as 3001234567</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="userEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
                                                 <input type="email" class="form-control" name="userEmail" id="userEmail"
-                                                    placeholder="example@user.com">
+                                                    placeholder="example@user.com" required>
                                             </div>
-
                                             <div class="col-6">
-                                                <label for="userPassword" class="form-label">Password <span
-                                                        class="text-danger">*</span></label>
+                                                <label for="userPassword" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" class="form-control border-end-0"
-                                                        name="userPassword" id="userPassword"
-                                                        placeholder="Enter Password"> <a href="javascript:;"
-                                                        class="input-group-text bg-transparent"><i
+                                                        name="userPassword" id="userPassword"                              placeholder="Enter Password" required pattern="[a-zA-Z\d]{6,}"> <a href="javascript:;"
+                                                        class="input-group-text bg-transparent" ><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="userState" class="form-label">State <span
-                                                        class="text-danger">*</span></label>
-                                                <select id="userState" name="userState" class="form-select">
-                                                    <option selected>Choose...</option>
-                                                    <option value="Punjab">Punjab</option>
-                                                    <option value="Sindh">Sindh</option>
-                                                    <option value="Balochistan">Balochistan</option>
-                                                    <option value="KPK">KPK</option>
-                                                    <option value="Fedral Area">Fedral Area</option>
-                                                    <option value="Azad Kashmir">Azad Kashmir</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label for="userDistrict" class="form-label">District<span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="userDistrict"
-                                                    id="userDistrict">
-                                            </div>
                                             <div class="col-12">
-                                                <label for="userAddress" class="form-label">Address <span
-                                                        class="text-danger">*</span></label>
+                                                <label for="userAddress" class="form-label">Address <span class="text-danger">*</span></label>
                                                 <textarea class="form-control" name="userAddress" id="userAddress"
-                                                    cols="30" rows="2"></textarea>
+                                                   cols="30" rows="2" required></textarea>
                                             </div>
                                             <div class="col-12">
-                                                <label for="userDescription" class="form-label">Description <span
-                                                        class="text-danger">*</span></label>
-                                                <textarea class="form-control" name="userDescription"
-                                                    id="userDescription"
-                                                    placeholder="Write few words about your case..." cols="150"
-                                                    rows="2"></textarea>
+                                                <label for="userDescription" class="form-label">Description <span class="text-danger">*</span></label>
+                                                <textarea class="form-control" name="userDescription" id="userDescription"
+                                                    placeholder="Write few words about your case..." cols="150" rows="2"  ></textarea>
                                             </div>
-                                            <div class="col-12">
-                                                <label for="userDescription" class="form-label">Client Image <span
-                                                        class="text-danger">*</span></label>
-                                                        <input type="file" name="image" >
-                                              
-                                            </div>
-
-
-                                            <!--                                             
+                                            
+                                            
+<!--                                             
                                             <div class="col-12">
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" name="lcond"
@@ -285,8 +218,15 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <!--end wrapper-->
+
+        <!-- Custom JS -->
+        <script src="assets/js/custom.js"></script>
+
     <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+
+
     <!--plugins-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
@@ -311,8 +251,22 @@ if (isset($_POST['submit'])) {
     </script>
     <!--app JS-->
     <script src="assets/js/app.js"></script>
+
+    <script>
+
+ 
+// function number(event) {
+//     var value = $(this).val();
+//     console.log(value);
+//     if(value == 0){
+//         event.preventDefault();
+//     }
+// }
+
+    </script>
+
+
+
 </body>
-
-
 
 </html>

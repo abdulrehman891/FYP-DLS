@@ -1,10 +1,6 @@
-<?php include('includes/connection.php');
-if (!isset($_SESSION['lawyer_email'])) {
-    header('Location:lawyerLogin.php');
-} 
-
-?>
-<?php include('includes/header.php'); ?>
+<?php 
+define('TITLE', 'Profile');
+include('includes/header.php'); ?>
 
 
 <?php
@@ -109,8 +105,6 @@ $row = mysqli_fetch_assoc($result);
                                         <h4><?php echo $row['lawyer_fname']. ' '. $row['lawyer_lname'] ?></h4>
                                         <p class="text-secondary mb-1"><?php echo $row['lawyer_spec'] ?></p>
                                         <p class="text-muted font-size-sm"><?php echo $row['lawyer_address'] ?></p>
-                                        <button class="btn btn-primary">Follow</button>
-                                        <button class="btn btn-outline-primary">Message</button>
                                     </div>
                                 </div>
                                 <hr class="my-4">
@@ -159,7 +153,7 @@ $row = mysqli_fetch_assoc($result);
                                                 <input type="text" class="form-control" value="<?php echo $row['lawyer_instagram'] ?>" name="lawyerInstagram" id="lawyerInstagram" placeholder="Instagram">
                                                 <label for="floatingInput">Instagram</label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary" name="update">Update</button>
+                                            <button type="submit" class="btn btn-grey" name="update">Update</button>
                                         </form>
                                     </div>
                                 </div>
@@ -261,7 +255,7 @@ $row = mysqli_fetch_assoc($result);
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <button type="submit" name="save" class="btn btn-primary px-4" >Save Changes </button>
+                                            <button type="submit" name="save" class="btn btn-dark px-4" >Save Changes </button>
                                         </div>
                                     </div>
 

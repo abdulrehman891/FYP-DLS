@@ -1,134 +1,126 @@
 <?php 
+define('TITLE', 'Clients');
+include('includes/header.php'); ?>
 
-include('includes/connection.php');
-if (!isset($_SESSION['lawyer_email'])) {
-    header('Location:lawyerLogin.php');
-} 
 
-include('includes/header.php'); 
+<?php
+// If delete button clicked
+if(isset($_REQUEST['delete'])){
+  $clientId = $_REQUEST['clientId'];
+  $lawyerId = $_SESSION['lawyer_id'];
+
+  $sql = "DELETE FROM client WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId'";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            <strong>Okay!</strong> Client has been deleted.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+  }
+}
+
 
 
 ?>
-
 
 <!--start page wrapper -->
 <div class="page-wrapper">
-    <div class="page-content">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0 text-uppercase">Clients</h6>
-            <!-- <a href="addClient.php" class="d-none d-sm-inline-block shadow-sm">
-        <button class="btn btn-sm btn-primary">
+  <div class="page-content">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h6 class="mb-0 text-uppercase">Clients</h6>
+      <a href="addClient.php" class="d-none d-sm-inline-block shadow-sm">
+        <button class="btn btn-sm btn-dark">
           <i class="fas fa-plus"></i>
           Add Client
         </button>
-      </a> -->
-        </div>
-        <hr />
+      </a>
+    </div>
+    <hr />
 
 
+    <?php if(isset($msg)) echo $msg; ?>
 
 
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="example2" class="table table-striped table-bordered example2">
-                        <thead>
-                            <tr>
-
-                                <th>Client Name</th>
-                                <th>Client Cnic</th>
-                                <th>Client Gender</th>
-                                <th>Client Mobile</th>
-                                <th>Reference Name</th>
-                                <th>Reference Mobile</th>
-                                <th>Client Email</th>
-                                <th>Client State</th>
-                                <th>Client District</th>
-                                <th>Client Address</th>
-                                <th>Client Description</th>
-                                <th>Date Created</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $lawyer_key = $_SESSION['lawyer_id'];
-                            if ($_SESSION['user'] == 'USER') {
-                                                            
-                            
-                            $sql1 = "SELECT * FROM `lawyer_user_access` WHERE `user_access_id`= '$lawyer_key'";
-                              $result1 = mysqli_query($conn, $sql1);
-                              $row = mysqli_fetch_assoc($result1);
-                              $lawyer_key=$row['lawer_key'];
-                              
-                            }
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="example2" class="table table-striped table-bordered example2">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Client Name</th>
+                <th>Mobile</th>
+                <th>City</th>
+                <th>Date Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
 
 
-                              $sql2 = "SELECT * FROM client WHERE lawyer_id = '$lawyer_key' AND is_assign = 1";
-                              $result2 = mysqli_query($conn, $sql2);
-                             
-                              while($row = mysqli_fetch_assoc($result2)){
-                                  ?>
+            <?php
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM client WHERE lawyer_id = '$lawyerId' AND is_assign = 1";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+           
+            ?>
+
+              <tr>
+                <td scope="row"><?php echo $row['client_id'] ?></td>
+                <td><?php echo $row['client_name'] ?></td>
+                <td><a style="color:grey;" title="Click to Chat" href="https://wa.me/<?php echo $row['client_mobile'] ?>"><?php echo $row['client_mobile'] ?></a></td>
+                <td><?php echo $row['client_city'] ?></td>
+                <td><?php echo $row['date_created'] ?></td>
+
+                <td>
+                  <div class="dropdown">
+                    <a
+                      class="text-first"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
+                    </a>
+                    <ul
+                      class="dropdown-menu shadow animated--fade-in"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+
+                      <li>
+                        <form action="editClient.php" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name="edit" class="dropdown-item">
+                            <i class="fas fa-pencil-alt"></i>
+                            Edit
+                          </button>
+                        </form>
+                      </li>
 
 
-
-                            <tr>
-
-                                <td> <?php echo $row["client_name"]; ?> </td>
-                                <td> <?php echo $row["client_cnic"]; ?> </td>
-                                <td> <?php echo $row["client_gender"]; ?> </td>
-                                <td><a href="https://wa.me/ <?php echo $row["client_mobile"]; ?> ">
-                                        <?php echo $row["client_mobile"]; ?> </a>
-                                </td>
-                                <td> <?php echo $row["client_reference_name"]; ?> </td>
-                                <td> <?php echo $row["client_reference_no"]; ?> </td>
-                                <td> <?php echo $row["client_email"]; ?> </td>
-                                <td> <?php echo $row["client_state"]; ?> </td>
-                                <td> <?php echo $row["client_city"]; ?> </td>
-                                <td> <?php echo $row["client_address"]; ?> </td>
-                                <td> <?php echo $row["client_description"]; ?> </td>
-                                <td> <?php echo $row["date_created"]; ?> </td>
-
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="text-first" type="button" id="dropdownMenuButton1"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-ellipsis-h" style="font-size: 19px"></i>
-                                        </a>
-                                        <ul class="dropdown-menu shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuButton1">
-
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="update_client.php?upid=<?php echo $row['client_id']; ?>"><i class="fas fa-pencil-alt"></i>
-                                                        Edit
-                                                </a>
+                      <li>
+                        <form action="" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name="delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </a>
+                        </form>
+                      </li>
 
 
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              
+              <?php    
+            } ?>
 
-                                            <li>
-                                                <a class="dropdown-item delete"
-                                                    data-id="<?php echo $row['client_id']; ?>"><i
-                                                        class="fas fa-trash"></i>
-                                                    Delete
-                                                </a>
-
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <?php
-
-                              }
-?>
-
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </tbody>
+          </table>
         </div>
     </div>
 </div>

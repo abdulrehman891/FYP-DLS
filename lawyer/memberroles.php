@@ -7,23 +7,12 @@ include('includes/header.php'); ?>
 
 // Add Clicked
 if(isset($_REQUEST['add'])){
-
-                            $lawyer_key = $_SESSION['lawyer_id'];
-                            if ($_SESSION['user'] == 'USER') {
-                                                            
-                            
-                            $sql1 = "SELECT * FROM `lawyer_user_access` WHERE `user_access_id`= '$lawyer_key'";
-                              $result1 = mysqli_query($conn, $sql1);
-                              $row = mysqli_fetch_assoc($result1);
-                              $lawyer_key=$row['lawer_key'];
-                              
-                            }
-
+  $lawyerId = $_SESSION['lawyer_id'];
   $roleName = $_REQUEST['roleName'];
   $roleDescription = $_REQUEST['roleDescription'];
 
   // Insert DATA
-  $sql = "INSERT INTO role (role_name , role_description, lawyer_id) VALUES ('$roleName', '$roleDescription', '$lawyer_key')";
+  $sql = "INSERT INTO role (role_name , role_description, lawyer_id) VALUES ('$roleName', '$roleDescription', '$lawyerId')";
   $result = mysqli_query($conn, $sql);
   if($result){
     $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -143,19 +132,8 @@ if(isset($_REQUEST['update'])){
 
 
             <?php 
-           
-           $lawyer_key = $_SESSION['lawyer_id'];
-           if ($_SESSION['user'] == 'USER') {
-                                           
-           
-           $sql1 = "SELECT * FROM `lawyer_user_access` WHERE `user_access_id`= '$lawyer_key'";
-             $result1 = mysqli_query($conn, $sql1);
-             $row = mysqli_fetch_assoc($result1);
-             $lawyer_key=$row['lawer_key'];
-             
-           }
-
-            $sql = "SELECT * FROM role WHERE lawyer_id = '$lawyer_key'";
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM role WHERE lawyer_id = '$lawyerId'";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
 

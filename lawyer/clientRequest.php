@@ -1,13 +1,54 @@
-<?php include('includes/connection.php'); 
+<?php 
+define('TITLE', 'Client Request');
+include('includes/header.php'); ?>
 
-if (!isset($_SESSION['lawyer_email'])) {
-  header('Location:lawyerLogin.php');
-} 
+
+<?php
+// IF accept button clicked
+if(isset($_REQUEST['accept'])){
+  $clientId = $_REQUEST['clientId'];
+  $lawyerId = $_SESSION['lawyer_id'];
+
+
+  $sql = "UPDATE client SET is_assign = 1 WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId' ";
+  $result =  mysqli_query($conn, $sql);
+
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Okaay!</strong> User Request has been Accepted Successfully!. 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';    
+  }
+}
+
+// IF delete button clicked
+if(isset($_REQUEST['delete'])){
+  $clientId = $_REQUEST['clientId'];
+  $lawyerId = $_SESSION['lawyer_id'];
+
+  $sql = "DELETE FROM client WHERE client_id = '$clientId' AND lawyer_id = '$lawyerId' ";
+  $result = mysqli_query($conn, $sql);
+  if($result){
+    $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <strong>Okaay!</strong> Requested User has been deleted. 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    
+  } else {
+    $msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+    <strong>Ohh!</strong> System is not working.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+
+  }
+
+
+
+}
+
+
 
 ?>
-<?php include('includes/header.php'); ?>
-
-
 
 
 
@@ -25,7 +66,7 @@ if (!isset($_SESSION['lawyer_email'])) {
     </div>
     <hr />
 
-    
+    <?php if(isset($msg)) echo $msg; ?>
 
 
 
@@ -50,17 +91,8 @@ if (!isset($_SESSION['lawyer_email'])) {
 
             <?php
             // Select Requested Users
-            $lawyer_key = $_SESSION['lawyer_id'];
-            if ($_SESSION['user'] == 'USER') {
-                                            
-            
-            $sql1 = "SELECT * FROM `lawyer_user_access` WHERE `user_access_id`= '$lawyer_key'";
-              $result1 = mysqli_query($conn, $sql1);
-              $row = mysqli_fetch_assoc($result1);
-              $lawyer_key=$row['lawer_key'];
-              
-            }
-            $sql = "SELECT * FROM client WHERE lawyer_id = $lawyer_key AND is_assign = 0 ";
+            $lawyerId = $_SESSION['lawyer_id'];
+            $sql = "SELECT * FROM client WHERE lawyer_id = $lawyerId AND is_assign = 0 ";
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($result)){
 
@@ -91,19 +123,29 @@ if (!isset($_SESSION['lawyer_email'])) {
                       class="dropdown-menu shadow animated--fade-in"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                    <li>
-            <a class="dropdown-item accept" data-id2="<?php echo $row['client_id']; ?>">
-                <i class="fa-solid fa-check"></i>
-                Accept
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item delete" data-id="<?php echo $row['client_id']; ?>">
-                <i class="fas fa-trash"></i>
-                Delete
-            </a>
-        </li>
+                      
 
+
+                      <li>
+                        <form action="" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name = "accept" class="dropdown-item">
+                            <i class="fa-solid fa-check"></i>
+                            Accept
+                          </button>
+                        </form>
+                      </li>
+
+
+                      <li>
+                        <form action="" method="get">
+                          <input type="hidden" name="clientId" value="<?php echo $row['client_id'] ?>">
+                          <button type="submit" name = "delete" class="dropdown-item">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                          </button>
+                        </form>
+                      </li>
 
 
                     </ul>
@@ -126,166 +168,3 @@ if (!isset($_SESSION['lawyer_email'])) {
 <!--end page wrapper -->
 
 <?php include('includes/footer.php'); ?>
-<script>
-
-
-// //////Accept Client Request//////////////
-$(document).on('click', '.accept', function() {
-     
-            var tid = $(this).data("id2");          
-            var msg = this;
-
-            $.ajax({
-                url: './ajax/accept_client_request.php',
-                type: 'POST',
-                data: {
-                    id: tid
-                },
-                
-                success: function(result) {
-
-                    if (result == 1) {
-                        Swal.fire({
-                            toast: true,
-                            icon: 'success',
-                            title: 'Client request has been accepted',
-                            animation: false,
-                            position: 'top-right',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal
-                                    .stopTimer)
-                                toast.addEventListener('mouseleave', Swal
-                                    .resumeTimer)
-
-                            }
-                        })
-                        $(msg).closest("tr").fadeOut();
-                    } else if (result == 2) {
-                       Swal.fire ({
-                            toast: true,
-                            icon: 'warning',
-                            title: 'Client request has not been accepted',
-                            animation: false,
-                            position: 'top-right',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal
-                                    .stopTimer)
-                                toast.addEventListener('mouseleave', Swal
-                                    .resumeTimer)
-
-                            }
-                        })
-                        
-                    } else {
-                         Swal.fire ({
-                            toast: true,
-                            icon: 'warning',
-                            title: 'System error!',
-                            animation: false,
-                            position: 'top-right',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal
-                                    .stopTimer)
-                                toast.addEventListener('mouseleave', Swal
-                                    .resumeTimer)
-
-                            }
-                        })
-                    }
-
-                }
-            });
-    
-    
-})
-
-
-// //////DELETE//////////////
-$(document).on('click', '.delete', function() {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var tid = $(this).data("id");
-            var msg = this;
-
-            $.ajax({
-                url: './ajax/delete_client_request.php',
-                type: 'POST',
-                data: {
-                    id: tid
-                },
-                // data: {
-                //     key: 'delpos',
-                //     delid: id,
-                // },
-                success: function(result) {
-
-                    if (result == 1) {
-                        Swal.fire({
-                            toast: true,
-                            icon: 'success',
-                            title: 'Client request been deleted',
-                            animation: false,
-                            position: 'top-right',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal
-                                    .stopTimer)
-                                toast.addEventListener('mouseleave', Swal
-                                    .resumeTimer)
-
-                            }
-                        })
-                        $(msg).closest("tr").fadeOut();
-                    } else if (result == 2) {
-                      Swal.fire({
-                            toast: true,
-                            icon: 'warning',
-                            title: 'Client request not been deleted',
-                            animation: false,
-                            position: 'top-right',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal
-                                    .stopTimer)
-                                toast.addEventListener('mouseleave', Swal
-                                    .resumeTimer)
-
-                            }
-                        })
-                        // Swal.fire(
-                        //     'Warning!',
-                        //     'Your file has not been deleted.',
-                        //     'warning'
-                        // )
-                    } else {
-                        alert("Error");
-                    }
-
-                }
-            });
-        }
-    })
-})
-
-</script>

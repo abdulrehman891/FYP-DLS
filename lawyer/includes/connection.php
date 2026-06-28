@@ -2,8 +2,7 @@
 if(!(isset($_SESSION))){
     session_start();
 }
-$conn = mysqli_connect("localhost", "root", "", "dls2");
-
+$conn = mysqli_connect("localhost", "root", "", "dls");
 
 ?>
 

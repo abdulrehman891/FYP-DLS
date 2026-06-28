@@ -7,9 +7,19 @@ include('includes/header.php');
 
     <!-- Banner Start -->
     <div class="banner-image w-100 vh-100 d-flex bg-secondary">
+    <div class="banner-image w-100 vh-100 d-flex bg-secondary">
 
         <div class="img-overly"></div>
         
+        <div class="banner-content" style="width: 300px; margin-top:120px; margin-left: 100px">
+            <h1 class="text-white">We <span class="text-third">Fight </span> For Your <span class="text-third">Right</span> </h1>
+            <p class="text-white shadow-sm my-3" style="text-align:justify">DLS Experts adhere to high standards of professionalism and conduct. Each of our Expert is a lawyer verified by Bar Council and expert in his/her respective field. That Helps Deal With diffferent Matters</p>
+
+            <a href="user/register.php" class="btn btn-outline-warning">Register</a>
+            <a href="user/login.php" class="btn btn-dark">Login</a>
+
+            <br><br>
+            <a href="tel:+923020006566" class="btn btn-gold rounded-pill">FREE CONSULTATION</a>
         <div class="banner-content" style="width: 300px; margin-top:120px; margin-left: 100px">
             <h1 class="text-white">We <span class="text-third">Fight </span> For Your <span class="text-third">Right</span> </h1>
             <p class="text-white shadow-sm my-3" style="text-align:justify">DLS Experts adhere to high standards of professionalism and conduct. Each of our Expert is a lawyer verified by Bar Council and expert in his/her respective field. That Helps Deal With diffferent Matters</p>
@@ -38,7 +48,12 @@ include('includes/header.php');
                 </p>
                 <p class="fs-5" style="text-align:justify">These pages will help you to begin exploring some of the more common practice areas. Each page provides a brief description of the practice area, the type of work lawyers in that area do, suggested resources, and example employers.</p>
                 <p class="fs-5" style="text-align:justify">We’ve compiled some key resources to help you learn more about the many practice areas and settings where attorneys build their careers.
+                <p class="fs-5" style="text-align:justify">From corporate law to human rights law, find out about different practice areas and what skills you need to succeed in each one.
                 </p>
+                <p class="fs-5" style="text-align:justify">These pages will help you to begin exploring some of the more common practice areas. Each page provides a brief description of the practice area, the type of work lawyers in that area do, suggested resources, and example employers.</p>
+                <p class="fs-5" style="text-align:justify">We’ve compiled some key resources to help you learn more about the many practice areas and settings where attorneys build their careers.
+                </p>
+                <!-- <a href="#" class="btn btn-gold rounded-pill">LEARN MORE</a> -->
                 <!-- <a href="#" class="btn btn-gold rounded-pill">LEARN MORE</a> -->
             </div>
             <div class="col-md-6 p-5">
@@ -48,7 +63,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Banking and Finance Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The banks are responsible for structuring the financing of international mergers and acquisitionss</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -57,7 +72,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Commercial Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The body of law that applies to the rights, relations, and conduct of persons and business engaged in commerce, merchandising, trade, and sales</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -66,7 +81,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Corporate Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">The practice or study of how shareholders, directors, employees, creditors, and other stakeholders such as consumers, the community, and the environment interact with one another.</span>
                 </div>
               </a>
               <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none" data-aos="fade-left" data-aos-delay="0">
@@ -75,7 +90,7 @@ include('includes/header.php');
                 </span>
                 <div class="text">
                   <h5 class="text-third">Criminal Law</h5>
-                  <span class="d-block text-fifth">Far far away, behind the word mountains, far from the countries</span>
+                  <span class="d-block text-fifth">Criminal law is the body of law that relates to crime. It prescribes conduct perceived as threatening, harmful, or otherwise endangering to the property, health, safety, and moral welfare of people inclusive of one's self</span>
                 </div>
               </a>
 
@@ -104,6 +119,21 @@ include('includes/header.php');
       </div>
     </section>
     <!-- Join Us End -->
+    <!-- Join Us Start -->
+    <section class="container-fluid bg-second text-white p-5 animate">
+      <div class="row">
+        <div class="col-md-6 px-5 mb-2">
+          <h1 class="text-white">  <span class="text-third">JOIN</span> US AS <span class="text-third">LAWYER</span></h1>
+          <p  style="text-align:justify;">We warmly welcome that you are about to join in few easy steps. DLS is Private Limited Company and an initiative by innovative Lawyers who also happen to love IT and are committed to the idea of integrating law with technology. It is a tech startup, run by legal professionals who believe that legal services should be affordable, simple and available to more people than ever before. Every day, at DLS we spend our time and resources making it easier for people to get the legal help they need, so they can focus on what's really important—taking care of their families and building strong businesses. We combine free legal documents and free legal information with access to affordable representation by licensed lawyers. Our commitment to affordable and accessible legal services is at the heart of everything we do. Without wasting time hit login or signup button.</p>
+          <a href="lawyer/lawyerRegistration.php" class="btn btn-warning"> Register</a>
+          <a href="lawyer/lawyerLogin.php" class="btn btn-dark ms-2">Login</a>
+        </div>
+        <div class="col-md-6 px-5 text-center">
+          <img class="img-fluid" style="max-height:400px;" src="assets/images/join/lawyer.jpg" alt="">
+        </div>
+      </div>
+    </section>
+    <!-- Join Us End -->
 
     <!-- Second Container Start -->
     <section class="container-fluid bg-first text-white p-5 animate">
@@ -111,13 +141,17 @@ include('includes/header.php');
         <div class="col-lg-4 px-5">
           <h1 class="text-white mt-2 display-4">
             <strong class="text-third">3 Months</strong> of Experience in Various Cases</h1>
+            <strong class="text-third">3 Months</strong> of Experience in Various Cases</h1>
         </div>
 
 
         <div class="col-lg-4 px-5">
           <span class="display-1 fw-bolder">
             <span class="text-third counter">3.5<span class="text-third">K</span></span><span class="text-white">+</span>
+            <span class="text-third counter">3.5<span class="text-third">K</span></span><span class="text-white">+</span>
           </span>
+          <strong class="d-block text-white fs-5">Total Cases</strong>
+          <p>These stunning number claims that people believe us.</p>
           <strong class="d-block text-white fs-5">Total Cases</strong>
           <p>These stunning number claims that people believe us.</p>
         </div>
@@ -127,6 +161,7 @@ include('includes/header.php');
             <span class="text-third counter">3</span><span class="text-third">K</span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Cases Win</strong>
+          <p>Your Success is our happiness, You win your legal matters.</p>
           <p>Your Success is our happiness, You win your legal matters.</p>
         </div>
 
@@ -143,8 +178,12 @@ include('includes/header.php');
             <span class="text-third counter">
             <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM client"));
               ?></span><span class="text-white">+</span>
+            <span class="text-third counter">
+            <?php echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM client"));
+              ?></span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Clients</strong>
+          <p>Here is the total number of clients who are associated with our system .</p>
           <p>Here is the total number of clients who are associated with our system .</p>
         </div>
 
@@ -154,8 +193,13 @@ include('includes/header.php');
               <?php 
                 echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lawyer"));
               ?></span><span class="text-white">+</span>
+            <span class="text-third counter">
+              <?php 
+                echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM lawyer"));
+              ?></span><span class="text-white">+</span>
           </span>
           <strong class="d-block text-white fs-5">Lawyers</strong>
+          <p>We hereby have all the experts lawyer with exepriced staff.</p>
           <p>We hereby have all the experts lawyer with exepriced staff.</p>
         </div>
 
@@ -197,8 +241,37 @@ include('includes/header.php');
                   <h3 class="testimonial-title">
                       <a href="https://wa.me/3020006566"><?php echo $row1['user_name'] ?></a>
                       <small>- <?php echo $row1['user_mobile'] ?></small>
+              
+              <?php 
+              $sql ="SELECT * FROM feedback WHERE feedback_status = 1";
+              $result = mysqli_query($conn, $sql);
+              while($row = mysqli_fetch_assoc($result)){
+
+                $userId = $row['user_id'];
+                $sql1 = "SELECT * FROM user WHERE user_id = '$userId'";
+                $result1 = mysqli_query($conn, $sql1);
+                $row1 = mysqli_fetch_assoc($result1);
+               
+              ?>
+
+              <div class="testimonial">
+                  <div class="pic">
+                    <img src="user/assets/images/users/<?php echo $row1['user_image'] ?>">
+                  </div>
+                  <div class="testimonial-content">
+                      <p><?php echo $row['feedback_message'] ?>
+                      </p>
+                  </div>
+                  <h3 class="testimonial-title">
+                      <a href="https://wa.me/3020006566"><?php echo $row1['user_name'] ?></a>
+                     
                   </h3>
               </div>
+
+              <?php 
+            } ?>
+
+
 
               <?php 
             } ?>
@@ -217,6 +290,7 @@ include('includes/header.php');
 
 
 
+
     <!-- More Expertiese Start -->
 
     <div class="container-fluid p-5 bg-first">
@@ -225,10 +299,12 @@ include('includes/header.php');
         <!-- Card 1 -->
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-3 fade-up">
           <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
+          <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
             <div class="mb-3">
               <i class="fas fa-suitcase-rolling fa-2x fa-fw text-third rounded-circle bg-second p-2"></i>
             </div>
             <h3 class="fs-5"><a href="#" class="text-decoration-none text-second "><span class="d-block">Labor and</span> Employment</a></h3>
+            <p>Collective labour law relates to the tripartite relationship between employee, employer, and union. Individual labour law concerns employees' rights at work also through the contract for work</p>
             <p>Collective labour law relates to the tripartite relationship between employee, employer, and union. Individual labour law concerns employees' rights at work also through the contract for work</p>
             <p class="mb-0"><a href="#" class="text-decoration-none text-third">Learn More </span><i class="fas fa-arrow-right fa-sm "></i></a></p>
           </div>
@@ -236,10 +312,12 @@ include('includes/header.php');
         <!-- Card 2 -->
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-3 fade-up">
           <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
+          <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
             <div class="mb-3">
               <i class="fas fa-suitcase-rolling fa-2x fa-fw text-third rounded-circle bg-second p-2"></i>
             </div>
             <h3 class="fs-5"><a href="#" class="text-decoration-none text-second "><span class="d-block">Corporative and</span> Civil Litigation</a></h3>
+            <p>Civil law as opposed to Criminal Law is used to resolve non-criminal disputes, including property disagreements and breaches of contract.</p>
             <p>Civil law as opposed to Criminal Law is used to resolve non-criminal disputes, including property disagreements and breaches of contract.</p>
             <p class="mb-0"><a href="#" class="text-decoration-none text-third">Learn More </span><i class="fas fa-arrow-right fa-sm "></i></a></p>
           </div>
@@ -247,10 +325,12 @@ include('includes/header.php');
         <!-- Card 3 -->
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-3 fade-up">
           <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
+          <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
             <div class="mb-3">
               <i class="fas fa-suitcase-rolling fa-2x fa-fw text-third rounded-circle bg-second p-2"></i>
             </div>
             <h3 class="fs-5"><a href="#" class="text-decoration-none text-second "><span class="d-block">Intellectual</span> Property Law</a></h3>
+            <p>Intellectual Property law deals with laws to protect and enforce rights of the creators and owners of inventions, writing, music, designs and other works, known as the "intellectual property."</p>
             <p>Intellectual Property law deals with laws to protect and enforce rights of the creators and owners of inventions, writing, music, designs and other works, known as the "intellectual property."</p>
             <p class="mb-0"><a href="#" class="text-decoration-none text-third">Learn More </span><i class="fas fa-arrow-right fa-sm "></i></a></p>
           </div>
@@ -258,10 +338,12 @@ include('includes/header.php');
         <!-- Card 4 -->
         <div class="col-md-6 mb-4 mb-lg-0 col-lg-3 fade-up">
           <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
+          <div class="bg-fourth p-4 rounded-3" style="min-height:400px">
             <div class="mb-3">
               <i class="fas fa-suitcase-rolling fa-2x fa-fw text-third rounded-circle bg-second p-2"></i>
             </div>
             <h3 class="fs-5"><a href="#" class="text-decoration-none text-second "><span class="d-block">Criminal Prosecution </span>and Defence</a></h3>
+            <p>SCriminal Prosecution means any government action for enforcement of criminal laws, including offenses, conviction for which could result in imprisonment.</p>
             <p>SCriminal Prosecution means any government action for enforcement of criminal laws, including offenses, conviction for which could result in imprisonment.</p>
             <p class="mb-0"><a href="#" class="text-decoration-none text-third">Learn More </span><i class="fas fa-arrow-right fa-sm "></i></a></p>
           </div>
@@ -284,12 +366,17 @@ include('includes/header.php');
           <h2>Let's get started. Call us Now for a Free Consultation</h2>
           <p class="">
             <a href="tel:+923020006566" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
+            <a href="tel:+923020006566" class="btn btn-gold mt-3"> <i class="fa fa-phone" aria-hidden="true"></i> Call Us Now</a>
           </p>
         </div>
       </div>
     </div>
 
     <!-- Call US End -->
+
+    
+
+
 
     
 

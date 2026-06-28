@@ -10,7 +10,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	<div class="switcher-wrapper">
+	<!-- <div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>
 		<div class="switcher-body">
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -116,6 +116,7 @@
 	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script src="assets/plugins/loader/loader.js"></script>
 	<script src="../assets/js/custom.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -130,28 +131,28 @@
                 "buttons": [ 
 				{  
                         extend: 'copy',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-copy"></i> Copy'  
                     }, 
                    
                     {  
                         extend: 'excel',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-excel"></i> Excel'  
                     },  
                     {  
                         extend: 'pdf',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-pdf"></i> Pdf'  
                     },  
                     {  
                         extend: 'csv',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-file-csv"></i> CSV'  
                     },  
                     {  
                         extend: 'print',  
-                        className: 'btn btn-primary rounded-0',  
+                        className: 'btn rounded-0',  
                         text: '<i class="fas fa-print"></i> Print'  
                     }  
                 ]  
@@ -164,6 +165,8 @@
 	<!--app JS-->
 	<script src="assets/js/app.js"></script>
 </body>
+
+
 
 
 <!-- Mirrored from codervent.com/rocker/demo/vertical/table-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 04 Feb 2022 14:09:33 GMT -->

@@ -1,6 +1,7 @@
 
 <!-- Header Start -->
 <?php
+define('TITLE', 'Change Password');
 include('includes/header.php');?>
 
 <!-- Header End -->
@@ -27,7 +28,7 @@ if(isset($_REQUEST['change'])){
 		</div>';
 	} 
 	else{
-		$sql = "UPDATE `admin` SET admin_password = '$newPassword' WHERE admin_id = '$adminId'";
+		$sql = "UPDATE admin SET admin_password = '$newPassword' WHERE admin_id = '$adminId'";
 		$result = mysqli_query($conn, $sql);
 		if($result){
 			$msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">

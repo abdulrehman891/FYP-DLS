@@ -1,617 +1,408 @@
 <?php
-include("includes/connection.php");
-if (!isset($_SESSION['lawyer_email'])) {
-    header('Location:lawyerLogin.php');
-} 
+            define('TITLE', 'Add Case');
+            include('includes/header.php'); ?>
 
 
 
-include('includes/header.php'); 
-?>
+    <?php
+    if (isset($_REQUEST['register'])) {
+        $lawyerId = $_SESSION['lawyer_id'];
+        $clientName = $_REQUEST['clientName'];
+        $clientEmail = $_REQUEST['clientEmail'];
+        $clientMobileNo = $_REQUEST['clientMobileNo'];
+        $pName = $_REQUEST['pName'];
+        $pAdvocateName = $_REQUEST['pAdvocateName'];
+        $rName = $_REQUEST['rName'];
+        $rAdvocateName = $_REQUEST['rAdvocateName'];
+        $province = $_REQUEST['province'];
+        $district = $_REQUEST['district'];
+        $courtType = $_REQUEST['courtType'];
+        $courtName = $_REQUEST['courtName'];
+        $judgeName = $_REQUEST['judgeName'];
+        $caseType = $_REQUEST['caseType'];
+        $caseStatus = $_REQUEST['caseStatus'];
+        $caseNumber = $_REQUEST['caseNumber'];
+        $caseDescription = $_REQUEST['caseDescription'];
+        $policeStationName = $_REQUEST['policeStationName'];
+        $firNumber = $_REQUEST['firNumber'];
+        $firDate = $_REQUEST['firDate'];
+        $fileNumber = $_REQUEST['fileNumber'];
+        $fileDate = $_REQUEST['fileDate'];
+        $actName = $_REQUEST['actName'];
+        $underSection = $_REQUEST['underSection'];
+        $caseHearingLastDate = $_REQUEST['caseHearingLastDate'];
+        $caseHearingNextDate = $_REQUEST['caseHearingNextDate'];
+        $caseHearingPurpose = $_REQUEST['caseHearingPurpose'];
+
+        // Checking Empty Fields
 
 
+        $sql = "INSERT INTO cases(client_name, lawyer_id, client_email, client_mobile_no, p_name, p_advocate_name, r_name, r_advocate_name, province, district, court_type, court_name, judge_name, case_type, case_status, case_number, case_description, police_station, fir_number, fir_date, file_no, file_date, act_name, under_section, case_hearing_last_date, case_hearing_next_date, case_hearing_purpose) VALUES ('$clientName', '$lawyerId', '$clientEmail', '$clientMobileNo', '$pName', '$pAdvocateName', '$rName', '$rAdvocateName', '$province', '$district', '$courtType', '$courtName', '$judgeName', '$caseType', '$caseStatus', '$caseNumber', '$caseDescription', '$policeStationName', '$firNumber', '$firDate', '$fileNumber', '$fileDate', '$actName', '$underSection', '$caseHearingLastDate', '$caseHearingNextDate', '$caseHearingPurpose')";
 
-<!--start page wrapper -->
-<div class="page-wrapper">
-    <div class="page-content">
-        <div class="row">
-            <div class="col-xl-9 mx-auto">
-                <div class="card border-top border-0 border-4 border-primary">
-                    <div class="card-body p-5">
-                        <div class="card-title d-flex align-items-center">
-                            <div>
-                                <!-- <i class="bx bxs-user me-1 font-22 text-primary"></i>
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            $msg = '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    
+        <strong>Nice!</strong> New Case Has been registered!
+    </div>';
+        } else {
+            $msg = '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    
+        <strong>Sorry!</strong> System is busy!
+    </div>';
+        }
+    }
+    ?>
+
+
+    <!--start page wrapper -->
+    <div class="page-wrapper">
+      
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-xl-9 mx-auto">
+                                    <div class="card border-top border-0 border-4 border-dark">
+                                        
+                                        <div class="card-body p-5">
+                                            <div class="card-title d-flex align-items-center">
+                                                <div>
+                                                    <!-- <i class="bx bxs-user me-1 font-22 text-primary"></i>
                                      -->
-                            </div>
-                            <h5 class="mb-0 text-primary">Add New Case</h5>
-                        </div>
-                        <hr>
-                        <form id="data" class="row g-3">
-                            <div class="col-md-4">
-                                <label for="inputclientname" class="form-label">Client Name</label>
-                                <select id="inputclientname" name="clientname" class="form-select  clientname">
-                                    <option value="">Select</option>
-                                    <?php
-                                //    $lawyerid=$_SESSION['lawyer_id'];
-                                $lawyer_key = $_SESSION['lawyer_id'];
-                            if ($_SESSION['user'] == 'USER') {
+                                                </div>
+                                               
+                                                        <i class="fas fa-gavel fa-fw  "></i>
+                                                        <h5 class="mb-0 text-dark">Add New Case</h5>
+                                                </div>
+
+                                                <?php if (isset($msg)) echo $msg; ?>
+
+
+
+                                                <form id="data" method="get" class="row g-3 needs-validation" novalidate>
+
+                                                    <h4 class="text-center">Client Information</h4>
+                                                    <hr>
+                                                    <div class="col-md-4">
+                                                        <label for="clientName" class="form-label">Client Name</label>
+                                                        <select id="clientName" name="clientName" class="form-select" required>
+                                                            <option value="">Select</option>
+                                                            <?php
+                                                            $sql = "SELECT * FROM client WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "' AND is_assign = 1 ";
+                                                            $result = mysqli_query($conn, $sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) { ?>
+
+                                                                <option value="<?php echo $row['client_name']; ?>"><?php echo $row['client_name']; ?></option>
+
+                                                            <?php }
+                                                            ?>
+
+                                                           
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                  
+                                                            <label for="clientEmail" class="form-label">Email</label>
+                                                            <input type="email" name="clientEmail" class="form-control" id="clientEmail" required readonly>
+                                                    </div>
+
+
+                                                    <div class="col-md-4">
+                                                        <label for="clientMobileNo" class="form-label">Mobile No</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">+92</span>
+                                                            <input type="text" id="clientMobileNo" name="clientMobileNo" class="form-control" aria-label="clientMobileNo" readonly required>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <h4 class="text-center">Party Information</h4>
+                                                    <hr>
+                                                    <div class="col-md-6">
+                                                        <label for="pName" class="form-label">Petitioner Name</label>
+                                                        <input type="text" name="pName" class="form-control" id="pName" onkeypress="isInputAlphabet(event)" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="pAdvocateName" class="form-label">Advocate Name</label>
+                                                        <input type="text" class="form-control" name="pAdvocateName" placeholder="Petitioner Advocate" id="pAdvocateName" onkeypress="isInputAlphabet(event)" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="rName" class="form-label">Respondent Name</label>
+                                                        <input type="text" class="form-control" name="rName" id="rName" onkeypress="isInputAlphabet(event)" required>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="rAdvocateName" class="form-label">Advocate Name</label>
+                                                        <input type="text" class="form-control" name="rAdvocateName" placeholder="Respondent Advocate" id="rAdvocateName" onkeypress="isInputAlphabet(event)" required>
+                                                    </div>
+
+
+                                                    <h4 class="text-center">Area</h4>
+                                                    <hr>
+
+                                                    <div class="col-md-6">
+                                                        <label for="province" class="form-label">Province</label>
+                                                        <select id="province" name="province" class="form-select" required>
+
+                                                            <option value="">Select Province</option>
+
+                                                            <?php
+                                                            $sql = "SELECT * FROM province WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "'";
+                                                            $result = mysqli_query($conn, $sql);
+                                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                            ?>
+                                                                <option value="<?php echo $row['province_id'] ?>"><?php echo $row['province_name'] ?></option>
+
+                                                            <?php } ?>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="district" class="form-label">District</label>
+                                                        <select id="district" name="district" class="form-select" required>
+                                                            <option value=""> Select District</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <h4 class="text-center">Court</h5>
+                                                        <hr>
+
+                                                        <div class="col-md-4">
+                                                            <label for="courtType" class="form-label">Court Type</label>
+                                                            <select id="courtType" name="courtType" class="form-select" required>
+                                                                <option value=""> Select Court Type</option>
+                                                                <?php
+                                                                $sql = "SELECT * FROM courttype WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "'";
+                                                                $result = mysqli_query($conn, $sql);
+                                                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                    <option><?php echo $row['court_type_name'] ?></option>
+                                                                <?php }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="courtName" class="form-label">Court Name</label>
+                                                            <select id="courtName" name="courtName" class="form-select" required>
+
+                                                                <option value="">Select Court Name</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+
+                                                            <label for="judgeName" class="form-label">Judge Name</label>
+                                                            <select id="judgeName" name="judgeName" class="form-select" required>
+                                                                <option value="">Select Judge</option>
+
+                                                                <?php
+                                                                $sql = "SELECT * FROM judges WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "'";
+                                                                $result = mysqli_query($conn, $sql);
+                                                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                    <option><?php echo $row['judge_name'] ?></option>
+                                                                <?php }
+                                                                ?>
+                                                            </select>
+
+                                                        </div>
+
+
+                                                        <h4 class="text-center">Case</h4>
+                                                        <hr>
+
+                                                        <div class="col-md-4">
+                                                            <label for="caseType" class="form-label">Case Type</label>
+                                                            <select id="caseType" name="caseType" class="form-select" required>
+                                                                <option value="">Select Case Type</option>
+                                                                <?php
+                                                                $sql = "SELECT * FROM casetype WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "'";
+                                                                $result = mysqli_query($conn, $sql);
+                                                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                    <option><?php echo $row['case_type_name'] ?></option>
+                                                                <?php }
+                                                                ?>
+
+                                                               
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+
+                                                            <label for="caseStatus" class="form-label">Case Status</label>
+                                                            <select id="caseStatus" name="caseStatus" class="form-select" required>
+                                                                <option value="">Select Case Status</option>
+                                                                <?php
+                                                                $sql = "SELECT * FROM casestatus WHERE lawyer_id = '" . $_SESSION['lawyer_id'] . "'";
+                                                                $result = mysqli_query($conn, $sql);
+                                                                while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                                    <option><?php echo $row['casestatus_name'] ?></option>
+                                                                <?php }
+                                                                ?>
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="caseNumber" class="form-label">Case Number</label>
+                                                            <input type="text" name="caseNumber" class="form-control" id="caseNumber" onkeypress="isInputNumber(event)" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="caseDescription" class="form-label">Case Description</label>
+                                                            <textarea class="form-control" name="caseDescription" id="caseDescription" rows="3" required></textarea>
+                                                        </div>
+
+
+                                                        <h4 class="text-center">FIR Details</h4>
+                                                        <hr>
+
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label for="policeStationName" class="form-label">Police Station</label>
+                                                                <input type="text" class="form-control" name="policeStationName" id="policeStationName" placeholder="Enter Police Station Name" required>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label for="firNumber" class="form-label">FIR Number</label>
+                                                            <input type="text" name="firNumber" class="form-control" id="firNumber" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="firDate" class="form-label">FIR Date</label>
+                                                            <input type="date" name="firDate" class="form-control" id="firDate" required>
+                                                        </div>
+
+
+
+                                                        <h4 class="text-center">Filing Number</h4>
+                                                        <hr>
+
+                                                        <div class="col-md-6">
+                                                            <label for="fileNumber" class="form-label">File Number</label>
+                                                            <input type="text" name="fileNumber" class="form-control" id="fileNumber" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="fileDate" class="form-label">File Date</label>
+                                                            <input type="date" name="fileDate" class="form-control" id="fileDate" required>
+                                                        </div>
+
+                                                        <h4 class="text-center">ACT</h4>
+                                                        <hr>
+
+
+                                                        <div class="col-md-6">
+                                                            <label for="actName" class="form-label">Act Name</label>
+                                                            <input type="text" name="actName" class="form-control" id="actName" required>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <label for="underSection" class="form-label">Under Section</label>
+                                                            <input type="text" name="underSection" class="form-control" id="underSection" required>
+                                                        </div>
+
+                                                        <h4 class="text-center">Case Hearing</h4>
+                                                        <hr>
+                                                        <div class="col-md-6">
+                                                            <label for="caseHearingLastDate" class="form-label">Last Date</label>
+                                                            <input type="date" name="caseHearingLastDate" class="form-control" id="caseHearingLastDate" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="caseHearingNextDate" class="form-label">Next Date</label>
+                                                            <input type="date" name="caseHearingNextDate" class="form-control" id="caseHearingNextDate" required>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label for="caseHearingPurpose" class="form-label">Purpose Of Hearing</label>
+                                                                <textarea class="form-control" name="caseHearingPurpose" id="caseHearingPurpose" rows="3" required></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <a href="cases.php" class="btn btn-secondary">Back</a>
+                                                            <button type="submit" id="register" name="register" class="btn btn-outline-dark">Register</button>
                                                             
-                            
-                            $sql1 = "SELECT * FROM `lawyer_user_access` WHERE `user_access_id`= '$lawyer_key'";
-                              $result1 = mysqli_query($conn, $sql1);
-                              $row = mysqli_fetch_assoc($result1);
-                              $lawyer_key=$row['lawer_key'];
-                                                                
-                                                                }
-
-                                    $sql="SELECT * FROM client WHERE lawyer_id='$lawyer_key' and is_assign=1";
-                                    $run=mysqli_query($conn,$sql);
-                                    while ($fet=mysqli_fetch_array($run)) {
-                                        ?>
-                                    <option value="<?php echo $fet{'client_id'};  ?>">
-                                        <?php echo $fet{'client_name'};  ?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-
-                                </select>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <div class="col-md-4">
-                                <label for="inputcnic" class="form-label">Cnic</label>
-                                <select id="inputcnic" name="cnic" class="form-select cnic">
-
-                                    <option> Select Cnic</option>
-
-
-
-                                </select>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="inputclientmobile" class="form-label">Client mobile</label>
-                                <select id="inputclientmobile" name="clientmobile" class="form-select clientmobile">
-
-                                    <option> Select Client Mobile</option>
-
-
-
-                                </select>
-                            </div>
-                            <h2 align="center">Case Information</h2>
-                            <hr>
-
-                            <h4 align="center">Party Information</h4>
-                            <hr>
-                            <div class="col-md-6">
-                                <label for="inputpetitioner" class="form-label">Petitioner Name</label>
-                                <input type="text" name="petitioner" class="form-control" id="inputpetitioner">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="Advocate Name" class="form-label">Advocate Name</label>
-                                <input type="text" class="form-control" name="petitioner_advocate"
-                                    placeholder="Petitioner Advocate" id="Advocate Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputRespondent" class="form-label">Respondent Name</label>
-                                <input type="text" class="form-control" name="respondent" id="inputRespondent">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="Respondent Advocate" class="form-label">Advocate Name</label>
-                                <input type="text" class="form-control" name="respondent_advocate"
-                                    placeholder="Respondent Advocate" id="Respondent Advocate">
-                            </div>
-
-
-                            <h4 align="center">Area</h4>
-                            <hr>
-
-                            <div class="col-md-4">
-                                <label for="inputProvince" class="form-label">Province</label>
-                                <select id="inputProvince" name="province" class="form-select  province">
-                                    <option value="">Select Province</option>
-                                    <?php
-include('./includes/connection.php');
-$sql1="SELECT * FROM province";
-$run1=mysqli_query($conn,$sql1);
-while ($fet=mysqli_fetch_array($run1)) {
-	?>
-                                    <option value="<?php echo $fet{'pro_id'};  ?>"> <?php echo $fet{'province'};  ?>
-                                    </option>
-                                    <?php
-}
-?>
-
-
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputDistrict" class="form-label">District</label>
-                                <select id="inputDistrict" name="district" class="form-select district">
-
-                                    <option> Select District</option>
-
-
-
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputtehsil" class="form-label">Tehsil</label>
-                                <select id="inputtehsil" name="tehsil" class="form-select tehsil">
-
-                                    <option> Select Tehsil</option>
-
-
-
-                                </select>
-                            </div>
-                            <h5 align="center">Court</h5>
-                            <hr>
-                            <div class="col-md-6">
-                                <label for="inputCourt" class="form-label">Court</label>
-                                <select id="inputCourt" name="court" class="form-select court">
-
-                                    <option> Select Court</option>
-
-
-
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCourtType" class="form-label">Court Type</label>
-                                <select id="inputCourtType" name="court_type" class="form-select court_type">
-                                    <option> Select Court Type</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCourtName" class="form-label">Court Name</label>
-                                <select id="inputCourtName" name="court_name" class="form-select court_name">
-
-                                    <option> Select Court Name</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="inputJudge" class="form-label">Judge</label>
-                                <input tupe="text" id="inputJudge" name="judge" class="form-control">
-
-                            </div>
-                            <h5 align="center">Case</h5>
-                            <hr>
-                            <div class="col-md-4">
-                                <label for="inputCase" class="form-label">Case</label>
-                                <select id="inputCase" name="case" class="form-select case">
-                                    <option value="">Select Case</option>
-                                    <?php
-include('./includes/connection.php');
-$sql6="SELECT * FROM `case_type`";
-$run6=mysqli_query($conn,$sql6);
-while ($fet=mysqli_fetch_array($run6)) {
-	?>
-                                    <option value="<?php echo $fet{'case_id'};  ?>"> <?php echo $fet{'case_type'};  ?>
-                                    </option>
-                                    <?php
-}
-?>
-
-
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputCasecategory" class="form-label">Case category</label>
-                                <select id="inputCasecategory" name="casecategory" class="form-select  casecategory">
-                                    <option value="">Select Case category</option>
-
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputCasesubcategory" class="form-label">Case sub category</label>
-                                <select id="inputCasesubcategory" name="casesubcategory"
-                                    class="form-select casesubcategory">
-                                    <option value="">Select Case Sub category</option>
-
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCaseNumber" class="form-label">Case Number</label>
-                                <input type="text" name="case_no" class="form-control" id="inputCaseNumber">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputCaseDate" class="form-label">Case Date</label>
-                                <input type="date" name="case_date" class="form-control" id="inputCaseDate">
-                            </div>
-
-                            <h5 align="center">Registration</h5>
-                            <hr>
-
-
-
-                            <div class="col-md-6">
-                                <label for="inputCNR" class="form-label">CNR/Referance Number</label>
-                                <input type="text" name="cnr" class="form-control" id="inputCNR">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputRegistrationDate" class="form-label">Registration Date</label>
-                                <input type="date" class="form-control" name="registration_date"
-                                    id="inputRegistrationDate">
-                            </div>
-                            <h5 align="center">FIR Number</h5>
-                            <hr>
-                            <div class="col-md-4">
-                                <label for="inputPoliceStation" class="form-label">Police Station</label>
-                                <select id="inputPoliceStation" name="police_station"
-                                    class="form-select  police_station">
-                                    <option value="">Select Police Station</option>
-
-                                </select>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="inputFIRNumber" class="form-label">FIR Number</label>
-                                <input type="text" name="fir_number" class="form-control" id="inputFIRNumber">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputFIRYear" class="form-label">FIR Year</label>
-                                <input type="date" name="fir_date" class="form-control" id="inputFIRYear">
-                            </div>
-                            <h5 align="center">Filing Number</h5>
-                            <hr>
-
-                            <div class="col-md-6">
-                                <label for="inputFileNumber" class="form-label">File Number</label>
-                                <input type="text" name="file_no" class="form-control" id="inputFileNumber">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="inputFileDate" class="form-label">File Date</label>
-                                <input type="date" name="file_date" class="form-control" id="inputFileDate">
-                            </div>
-
-                            <h5 align="center">ACT</h5>
-                            <hr>
-                            <div class="col-md-6">
-                                <label for="inputActType" class="form-label">Act Type</label>
-                                <select id="inputActType" name="act" class="form-select">
-                                    <?php
-include('./includes/connection.php');
-$sql10="SELECT * FROM `act`";
-$run10=mysqli_query($conn,$sql10);
-while ($fet=mysqli_fetch_array($run10)) {
-	?>
-                                    <option value="<?php echo $fet{'act_id'};  ?>"> <?php echo $fet{'act'};  ?></option>
-                                    <?php
-}
-?>
-
-                                </select>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="inputUnderSection" class="form-label">Under Section</label>
-                                <input type="text" name="under_section" class="form-control" id="inputUnderSection">
-                            </div>
-
-                            <h5 align="center">Case Hearing</h5>
-                            <hr>
-                            <div class="col-md-4">
-                                <label for="inputLastDate" class="form-label">Last Date</label>
-                                <input type="date" name="last_date" class="form-control" id="inputLastDate">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputNextDate" class="form-label">Next Date</label>
-                                <input type="date" name="Next_date" class="form-control" id="inputNextDate">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="inputPurposeOfHearing" class="form-label">Purpose Of Hearing</label>
-                                <input type="text" name="purpose" class="form-control" id="inputPurposeOfHearing">
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" id="subm" class="btn btn-primary px-5">Register</button>
-                                <a href="cases.php" class="btn btn-secondary px-5">Back</a>
-                            </div>
-                        </form>
-                    </div>
+                    
+                    <!--end row-->
                 </div>
             </div>
-        </div>
-        <!--end row-->
-    </div>
-</div>
-<!--end page wrapper -->
+            <!--end page wrapper -->
+          
 
 
+            <?php include('includes/footer.php'); ?>
 
-
-
-<?php include('includes/footer.php'); ?>
-
-
-<script>
-// //////INSERT///////////
-
-$(document).ready(function() {
-    $("#subm").on("click", function(g) {
-
-        g.preventDefault();
-        var formdata = new FormData(data);
-        // alert(formdata);
-
-        $.ajax({
-            url: "./ajax/add_case.php",
-            method: "POST",
-            contentType: false,
-            processData: false,
-            data: formdata,
-            success: function(res) {
-
-
-                if (res == 1) {
-                    Swal.fire({
-                        toast: true,
-                        icon: 'warning',
-                        title: 'Please fill all fields',
-                        animation: false,
-                        position: 'top-right',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal
-                                .stopTimer)
-                            toast.addEventListener('mouseleave', Swal
-                                .resumeTimer)
+            <script>
+                // Select Email and Phone No on Client Name Change
+                $('#clientName').on('change', function() {
+                    var clientName = $(this).val();
+                    $.ajax({
+                        type: "post",
+                        url: "ajax/case.php",
+                        data: {
+                            clientName: clientName
+                        },
+                        success: function(response) {
+                            var data = JSON.parse(response);
+                            var clientEmail = data['client_email'];
+                            var clientMobileNo = data['client_mobile'];
+                            $('#clientEmail').val(clientEmail);
+                            $('#clientMobileNo').val(clientMobileNo);
 
                         }
-                    })
-                } else if (res == 2) {
-                    Swal.fire({
-                        toast: true,
-                        icon: 'success',
-                        title: 'Client case has been added',
-                        animation: false,
-                        position: 'top-right',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal
-                                .stopTimer)
-                            toast.addEventListener('mouseleave', Swal
-                                .resumeTimer)
+                    });
+                });
+
+                // SELECT DISTRICT on Province Change
+                $('#province').on('change', function() {
+                    var province = $(this).val();
+
+                    $.ajax({
+                        type: "post",
+                        url: "ajax/case1.php",
+                        data: {
+                            provinceId: province
+                        },
+                        success: function(response) {
+
+                            $('#district').html(response);
 
                         }
-                    })
-                    $('form').trigger("reset");
-                    // window.location.href = "./case_sub_category.php";
-                } else if (res == 3) {
-                    Swal.fire({
-                        toast: true,
-                        icon: 'warning',
-                        title: 'Client case has not been added',
-                        animation: false,
-                        position: 'top-right',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal
-                                .stopTimer)
-                            toast.addEventListener('mouseleave', Swal
-                                .resumeTimer)
+                    });
+                });
+
+
+
+                // SELECT Court on Court Type Change
+                $('#courtType').on('change', function() {
+                    var courtTyeName = $(this).val();
+
+
+                    $.ajax({
+                        type: "post",
+                        url: "ajax/case2.php",
+                        data: {
+                            courtTypeName: courtTyeName
+                        },
+                        success: function(response) {
+
+                            $('#courtName').html(response);
 
                         }
-                    })
-                } else {
-                    alert("error");
-                }
-            }
-
-        })
-    })
-
-});
+                    });
+                });
 
 
-
-
-
-// //////CNIC/////////
-
-$('.clientname').on("change", function() {
-    var value = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case_cnic.php",
-        method: "POST",
-        data: {
-            d_id: value
-        },
-        success: function(res) {
-            // alert(res);
-            $('.cnic').html(res);
-        }
-    })
-})
-
-//////MOBILE/////
-$('.cnic').on("change", function() {
-    var value = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case_cnic.php",
-        method: "POST",
-        data: {
-            d_id2: value
-        },
-        success: function(res) {
-            // alert(res);
-            $('.clientmobile').html(res);
-        }
-    })
-})
-
-
-
-// ///////////
-$('.province').on("change", function() {
-    var value = $(this).val();
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id: value
-        },
-        success: function(res) {
-
-            $('.district').html(res);
-        }
-    })
-
-})
-
-
-// ///////////
-
-$('.district').on("change", function() {
-    var value2 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id2: value2
-        },
-        success: function(res) {
-
-            $('.tehsil').html(res);
-        }
-    })
-
-})
-// ///////////
-
-$('.tehsil').on("change", function() {
-    var value3 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id3: value3
-        },
-        success: function(res) {
-
-            $('.court').html(res);
-        }
-    })
-
-})
-
-
-
-// ///////////
-
-$('.court').on("change", function() {
-    var value4 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id4: value4
-        },
-        success: function(res) {
-
-            $('.court_type').html(res);
-        }
-    })
-
-})
-
-// ///////////
-
-$('.court_type').on("change", function() {
-    var value8 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id8: value8
-        },
-        success: function(res) {
-
-            $('.court_name').html(res);
-        }
-    })
-
-})
-
-// ///////////
-
-$('.tehsil').on("change", function() {
-    var value5 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id5: value5
-        },
-        success: function(res) {
-
-            $('.police_station').html(res);
-        }
-    })
-
-})
-
-// ///////////
-
-$('.case').on("change", function() {
-    var value6 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id6: value6
-        },
-        success: function(res) {
-
-            $('.casecategory').html(res);
-        }
-    })
-
-})
-// ///////////
-
-$('.casecategory').on("change", function() {
-    var value7 = $(this).val();
-
-
-    $.ajax({
-        url: "./ajax/dropdowns_add_case.php",
-        method: "POST",
-        data: {
-            d_id7: value7
-        },
-        success: function(res) {
-
-            $('.casesubcategory').html(res);
-        }
-    })
-
-})
-</script>
+                
+            </script>

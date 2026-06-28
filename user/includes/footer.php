@@ -107,6 +107,10 @@
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="../assets/js/custom.js"></script>
+
 	<!-- Fontawesome v6 js -->
 	<script src="../assets/js/all.min.js"></script>
 	<!--plugins-->
@@ -116,6 +120,8 @@
 	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 	<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<!-- loader -->
+	<script src="assets/plugins/loader/loader.js"></script>
 	<script src="../assets/js/custom.js"></script>
 	<script>
 		$(document).ready(function() {
